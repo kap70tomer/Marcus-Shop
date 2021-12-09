@@ -1,0 +1,20 @@
+button{
+    margin: 2%;
+}
+.shopNotifications{
+    margin-top: 5px;
+    color: darkorange;
+    width: 100%;
+
+}
+#lastTimes{
+    background-color: rgba(77, 230, 222, 0.336);
+    color: yellow;
+    
+    margin: 5px;
+    text-decoration-line:underline;
+}
+
+i{
+    color: darkviolet;
+}

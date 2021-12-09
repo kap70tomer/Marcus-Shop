@@ -1,0 +1,62 @@
+<nav class="navbar navbar-inverse">
+
+  <div class="container-fluid">
+    <div class="navbar-header">
+
+    </div>
+    <a class="navbar-brand" href="#">Marcus-Munnitions<span class="glyphicon glyphicon-home"></span></a>
+    <ul class="nav navbar-nav">
+      <li>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Category</label>
+          </div>
+          <select class="custom-select" [(ngModel)]='categoryId' id="inputGroupSelect01">
+            <option value="" selected>All</option>
+              <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+            </select>
+        </div>
+      </li>
+    </ul>
+    <!-- <li class="active"><a href="#">Home</a></li> -->
+    <input type="text" id="searchProduct" class="form-control col-4" [(ngModel)]="text" placeholder="Search Products By Name">
+  </div>
+</nav>
+
+
+<div id="cardsContainer" *ngIf="isShowAll">
+  <div *ngFor="let product of products| categoryPipe: categoryId | nameFilterPipe:text" class="card"
+    (click)=[(showDetailed(product))] data-toggle="modal" data-target="#myModal">
+  <div class='card-title'>
+    <img src="http://localhost:3000/{{product.picture}}">
+  </div>
+  <div class="card-body">
+    <h4 class="text-capitalize">{{product.name}} </h4>
+    {{product.price}}$
+  </div>
+</div>
+</div>
+
+<div class="modal" id="myModal" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog col-10">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          How many {{currentProduct.name}} would you like to Buy?
+        </h4>
+      </div>
+      <div class="modal-body">
+        <img *ngIf="currentProduct.picture" src="http://localhost:3000/{{currentProduct.picture}}">
+        <input class="form-control" type="number" min="1" value="1" [(ngModel)]="quantity">
+        
+        Price : {{currentProduct.price * quantity}} (USD)
+        <button type="button" class="btn btn-primary" (click)="addToCart(currentProduct)">Add To Cart</button>
+        
+        <button type="button" class="btn btn-secondary" (click)="showToggle()" data-dismiss="modal">Close</button>
+      </div>
+      
+    </div>
+  </div>
+</div>

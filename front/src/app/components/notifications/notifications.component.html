@@ -1,0 +1,18 @@
+<div class="shopNotifications">
+    <p>No. Orders from this Site: <i>{{this.amountOfOrders}}</i></p>
+    <p>No. Products in Store: <i>{{this.amountOfProducts}}</i></p>
+    
+    
+    <h3 *ngIf="isLoggedIn" class="text-capitalize"> Welcome back {{this.userService.name}}!</h3>
+    <div *ngIf="isLoggedIn && !isNewUser" class="userNotifications">
+        <div *ngIf="lastCarts">
+            <i  class="text-warning">last Carts :</i>
+            <div *ngFor="let cart of lastCarts" id="lastTimes">
+                {{ cart.creation_date| date:'dd-MM HH:mm'}} | {{cart.total}}$
+                <button *ngIf="!cart.isChecked" class="btn btn-danger btn-sm" (click)="resumeShopping(cart.id)" routerLink="/shop">RESUME</button>
+                <span class="btn btn-success btn-sm" *ngIf="cart.isChecked" >PAYED</span>
+            </div>
+        </div>
+    </div>
+    <img style="width:80%;" src="../../../assets/jackassCart.jpg">
+</div>

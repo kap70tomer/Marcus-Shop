@@ -1,0 +1,35 @@
+<div class="continer wrapper">
+
+    <!-- <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Search Products By Name"> -->
+    
+    <table class="table table-old">
+        <thead>
+            <!-- A table row -->
+            <tr>
+                <!-- A table header -->
+                <th scope="col">Name</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        
+       <tbody>
+         
+        <tr class="bg-secondery" *ngFor="let item of cart_items let i=index">
+            <td class="text-capitalize">{{ item.name }}</td>
+            <td><input id={{item.product_id}} type="number" min="1"
+            class="form-control" (change)="updateItem(item)" value="{{item.quantity}}" [(ngModel)]="item.quantity"></td>
+            <td class="text-muted">{{ item.total_price }}$</td>
+            <td>
+            <span class="glyphicon glyphicon-remove" (click)=[(removeCartItem(item,i))]></span>
+            </td>
+        </tr>
+        <tr>
+           <td> <button class="btn btn-danger" routerLink="/checkout"> Checkout<span class="glyphicon glyphicon-shopping-cart">     </span></button></td>
+             <td>Total:{{this.cost||0||this.shoppingCart.total_price.value}}$</td>
+            <td><button (click)="clearCart()" class="btn btn-danger">Clear<span class="glyphicon glyphicon-trash"></span></button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

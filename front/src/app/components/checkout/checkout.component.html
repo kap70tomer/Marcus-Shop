@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-md-5 order-md-2 mb-4">
+    <button type="button" class="btn btn-danger btn-lg" routerLink="/shop">Back To Shop<span class="glyphicon glyphicon-shopping-cart"></span></button>
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-muted">Your cart</span>
+      <span class="badge badge-secondary badge-pill">{{this.cart_items.length}}</span>
+    </h4>
+
+    <form class="card p-2">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search by Pro name" [(ngModel)]="text" name="orderSearch"  id="search-term">
+      </div>
+    </form>
+
+    <ul class="list-group mb-3">
+      <li *ngFor="let item of cart_items| nameFilterPipe:text" class="list-group-item d-flex justify-content-between lh-condensed">
+        <div>
+          <h4 [innerHTML]= "item.name| highlight:text">{{item.name}}</h4>
+          <small class="text-muted">X{{item.quantity}}</small>
+        </div> 
+        <span class="text-muted">${{item.total_price }}</span>
+      </li>
+
+      <li class="list-group-item d-flex justify-content-between">
+        <span class="text-success">Total (USD)</span>
+        <strong>${{this.total_price}} </strong>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-6 order-md-1">
+    <h4 class="mb-3">Billing address</h4>
+    <div class="row justify-content-center">
+      <div class="col-md-10 mb-3">
+        <form [formGroup]="deliveryForm" class="needs-validation">
+
+          <div class="mb-3">
+            <label for="address">Street</label>
+            <input type="text" (dblclick)="address.setValue(this.userService.street)" formControlName="address" class="form-control" placeholder="1234 Main St" required [ngClass]="{ 'is-invalid': address.touched && address.errors }" />
+            <div *ngIf="address.touched && address.errors" class="invalid-feedback">
+              <div *ngIf="address.errors?.required">Please provide valid Address for Delivery</div>
+            </div>
+
+            <div class="col-12 justify-content-center">
+              <label for="city">CITY</label>
+              <select (dblclick)="city.setValue(this.userService.city)" formControlName="city" class="custom-select d-block w-100" required>
+                <option value="">Choose...</option>
+                <option>JARUSALEM</option>
+                <option>TEL-AVIV</option>
+                <option>RISHON-LEZION</option>
+                <option>PETAH-TIKVA</option>
+                <option>BEER-SHEVA</option>
+                <option>NETANIA</option>
+                <option>HIFA</option>
+                <option>EILAT</option>
+                <option>RANANA</option>
+                <option>ASHDOD</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">
+              Please provide a valid state.
+            </div>
+          </div>
+
+          <h4 class="mb-3">Delivery</h4>
+          <div class="col-md-12 mb-3 justify-content-center">
+            <label for="cc-number">Date for delivery</label>
+            <input type="date" formControlName="date" class="form-control" required>
+            <div class="invalid-feedback">
+             Please Select a date.
+            </div>
+
+          </div>
+
+          <h4 class="mb-3">Payment</h4>
+          <div class="col-md-12 mb-3 justify-content-center">
+            <label for="credit">Credit card number<span class="glyphicon glyphicon-credit-card"></span></label>
+            <input type="text" formControlName="credit" class="form-control" maxlength="16" placeholder="53XX-XXXX-XXXX-1234" required [ngClass]="{ 'is-invalid': credit.touched && credit.errors }" />
+            <div *ngIf="credit.touched && credit.errors" class="invalid-feedback">
+              <div *ngIf="credit.errors?.required">Please Provide Credit Card</div>
+              <div *ngIf="credit.errors">Please use valid card number</div>
+            </div>
+          </div>
+          
+          <hr class="mb-4">
+          <button [disabled]="deliveryForm.invalid && this.cart_items.length" class="btn btn-primary btn-lg btn-block" (click)="onSubmit()" data-keyboard="true" data-toggle="modal" data-target="#myModal">Continue to checkout</button>
+        </form>
+      </div>
+      
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">
+               <h3> Thank you for purchesing from our site, We Hope to see you again !</h3>
+                Your Order is complete,
+                 download reciept?
+              </h4>
+            </div>
+            <div class="modal-body">
+              
+              <button type="button" (click)="download()" class="btn btn-danger">Download<span class="glyphicon glyphicon-save-file"></span></button>
+              
+              <button type="button" class="btn btn-secondary" routerLink="/home" data-dismiss="modal">OK<span class="glyphicon glyphicon-ok"></span></button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    </div>

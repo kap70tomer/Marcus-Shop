@@ -1,0 +1,54 @@
+<section>
+    <aside>
+        <div>
+            <input type="text" placeholder="Search entire Store" [(ngModel)]="text" id="searchProduct">
+            <span class="btn btn-danger glyphicon glyphicon-plus" (click)="initForm()"></span><br><br>
+            
+            
+            <form #updateProductForm="ngForm">
+                
+                <label for="name">Name</label><span class="glyphicon glyphicon-tag"></span>
+                <input type="text" placeholder="'name'" value="{{currentProduct.name}}"
+                [(ngModel)]="currentProduct.name" name="name">
+                <br>
+
+                <label for="price">Price</label><span class="glyphicon glyphicon-usd"></span><br>
+                <input type="number" min="1" placeholder="USD $123" value="{{currentProduct.price}}"
+                    [(ngModel)]="currentProduct.price" name="price">
+                    <br>
+                
+                <app-upload-files></app-upload-files>
+                <br>
+                
+                <label for="category">Choose Category</label><span class="glyphicon glyphicon-tags"></span>
+                <input type="number" min="1" max="4" value="{{currentProduct.category_id}}" placeholder="1/2/3/4"
+                    [(ngModel)]="currentProduct.category_id" name="category_id">
+                    <br>
+                <span>1-drinks 2-alcohol 3-food 4-snacks</span>
+                <br>
+                <button *ngIf="!this.currentProduct.id" id="saveBtn" [disabled]="updateProductForm.untouched && !updateProductForm.dirty" (click)="updateProduct()">Save<span class="glyphicon glyphicon-save-file"></span></button>
+                <button *ngIf="this.currentProduct.id" id="saveBtn" [disabled]="updateProductForm.untouched && !updateProductForm.dirty" (click)="updateProduct()">Update<span class="glyphicon glyphicon-save-file"></span></button>
+            </form>
+        </div>
+        
+            <button class="btn btn-danger" routerLink ="/home">Home<span class="glyphicon glyphicon-home"></span></button>
+        
+    </aside>
+
+    <main>
+        <div id="cardsContainer">
+            <h2>Click a Product to load update Form</h2>
+            <div class="card card-block" *ngFor="let product of products|nameFilterPipe:text"
+                (click)="loadClickedProductInfo(product)">
+                <div class="card-body">
+                    <img src="http://localhost:3000/{{product.picture}}">
+                </div>
+                <div class="card-title">
+                    <h6 class="text-capitalize">{{ product.name }}</h6>
+                </div>
+                <strong class="price">{{ product.price }} $</strong>
+            </div>
+        </div>
+
+    </main>
+</section>

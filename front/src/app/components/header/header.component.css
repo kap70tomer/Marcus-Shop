@@ -1,0 +1,16 @@
+img{
+    position:sticky;
+    float: left;    
+    width: 4rem;
+}
+.contact{
+    float: right;
+    color: darkslategray;
+    height: 4rem;
+    font-family: fantasy;
+}
+p{
+    
+    font-family: cursive;
+    float:right
+}
