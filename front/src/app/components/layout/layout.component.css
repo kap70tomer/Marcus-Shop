@@ -1,25 +1,18 @@
 section {
     border: 0.1px solid black;
-    min-height: 100%;
-    background-color: rgb(205, 247, 225);
+    height: 100%;
     text-align: center;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: repeat(12, 1fr); /* 12 columns */
-    grid-template-rows: 4.20rem auto 3rem; /* 3 rows */
-
+    /* grid-template-columns: repeat(12, 1fr); 12 columns */
+    grid-template-rows: 60px auto 30px; /*3 rows*/
 }
-
 
 section > * {
     border: 0.1px solid black;
+    background-color: rgb(215, 247, 230);
 }
-
-main {
-    grid-column: span 12;
-}
-
-
-header, footer {
-    grid-column: span 12;
+footer{
+    position: sticky;
+    bottom: 0;
 }

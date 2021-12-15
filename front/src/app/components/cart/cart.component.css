@@ -1,5 +1,4 @@
 .wrapper {
-    height: 100rem;
-    width: 24.5rem;
+    height: 100%;
     overflow:auto;
 }

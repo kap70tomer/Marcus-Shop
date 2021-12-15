@@ -1,10 +1,6 @@
 <nav class="navbar navbar-inverse">
 
   <div class="container-fluid">
-    <div class="navbar-header">
-
-    </div>
-    <a class="navbar-brand" href="#">Marcus-Munnitions<span class="glyphicon glyphicon-home"></span></a>
     <ul class="nav navbar-nav">
       <li>
         <div class="input-group mb-3">
@@ -12,14 +8,14 @@
             <label class="input-group-text" for="inputGroupSelect01">Category</label>
           </div>
           <select class="custom-select" [(ngModel)]='categoryId' id="inputGroupSelect01">
-            <option value="" selected>All</option>
-              <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+            <option selected value="">All</option>
+            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
             </select>
         </div>
       </li>
     </ul>
     <!-- <li class="active"><a href="#">Home</a></li> -->
-    <input type="text" id="searchProduct" class="form-control col-4" [(ngModel)]="text" placeholder="Search Products By Name">
+    <input type="text" id="searchProduct" class="form-control" [(ngModel)]="text" placeholder="Search Products By Name">
   </div>
 </nav>
 

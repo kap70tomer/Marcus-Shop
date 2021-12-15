@@ -1,31 +1,27 @@
-body{
-    height: 100%;
-    overflow: hidden;
-}
-section {
+
+.shop-wrapper{
     text-align: center;
     background-color: rgb(248, 250, 249);
     box-sizing: border-box;
-    display: flex;
-    height: 57rem;
-    overflow: hidden;
-}
-
-section > * {
-    border: 0.1px solid rgb(238, 232, 232);
-}
-
-main{
-    width: max-content;
     min-height: 100%;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr); /* 12 columns */
 }
-
+.shop-wrapper > * {
+    border: 0.1px solid rgb(238, 232, 232);
+    /* height: 100%; */
+}
+.shop-main{
+  grid-column: span 8;
+}
+.shop-cart{
+  grid-column: span 1;
+}
 /* The switch - the box around the slider */
 .switch{
     position: fixed;
     top:5px;
     left:70px;
-  
     display: inline-block;
     width: 60px;
     height: 34px;

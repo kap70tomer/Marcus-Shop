@@ -1,14 +1,15 @@
-<section>
-
-    <div *ngIf="isShowCart">
+<div class="shop-wrapper">
+    <div class="shop-cart" *ngIf="isShowCart">
         <app-cart></app-cart>
     </div>
-    <main class="w-100">
-        
+    <div class="shop-main">    
         <label class="switch">
             <input  id="cartToggler" type="checkbox" [checked]="isShowCart" (change)="isShowCart=! isShowCart">
             <span class="slider round"></span>
-            </label>
-          <app-products></app-products>
-        </main>
-</section>
+        </label>
+        
+        <div class="shop-products-wrapper">
+            <app-products></app-products>
+        </div>
+    </div>
+</div>
