@@ -5,13 +5,13 @@ import { UserService } from 'src/app/services/users.service';
 import { UserSignUpInfo } from 'src/app/models/userSignUpInfo';
 import { UserLoginDetails } from 'src/app/models/UserLoginDetails';
 
-
 @Component({
     selector: 'app-sign-up',
     templateUrl: './sign-up.component.html',
     styleUrls: ['./sign-up.component.css']
 })
 
+//@class {component} SignUpComponent - display the user registration form for the app. 
 export class SignUpComponent implements OnInit {
 
     public registerForm: FormGroup;
@@ -23,55 +23,62 @@ export class SignUpComponent implements OnInit {
     public city: FormControl;
     public street: FormControl;
     public repassword: FormControl;
-    public isPasswordsSame: Boolean;
+    public isPasswordsSame: Boolean = false;
 
 
     public userSignUpInfo: UserSignUpInfo;
 
     public submitted = false;
-    public firstForm = true;
+    public isFormValid = true;
 
     constructor(private router: Router, private userService: UserService) {
-        this.userSignUpInfo = new UserSignUpInfo();
+        this.userSignUpInfo = new UserSignUpInfo("","","","","","");
         this.userService = userService;
         this.isPasswordsSame = false;
     }
 
+    //@property {function} ngOnInit - On page load, after the 'injections stage'.
     ngOnInit() {
-
-        this.name = new FormControl('', [Validators.pattern(/^[A-Z][-'a-zA-Z]+$/), Validators.required]);
-        this.last_name = new FormControl('', [Validators.required, Validators.pattern(/^[A-Z][-'a-zA-Z]+$/)]);
-        this.email = new FormControl("", [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)]);
-        this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
-        this.city = new FormControl("", Validators.required);
-        this.street = new FormControl("", Validators.required);
-        this.repassword = new FormControl("", [Validators.required, Validators.minLength(6)]);
-
+        
+        //@property {object} registerForm - Fist out of two parts registration <form>, bind to a collection of controls that takes values from the UI, used to create new User in the system.
         this.registerForm = new FormGroup({
-
-            name: this.name,
             email: this.email,
             password: this.password,
             repassword: this.repassword
         })
-
-        this.registerForm2 = new FormGroup({
-
+        
+        //@property {object} registerForm2 - Second part of registration <form>, takes personal details values from the UI, used to create new User in the system.
+        this.registerForm2 = new FormGroup({  
+            name: this.name,
             last_name: this.last_name,
             city: this.city,
             street: this.street
         })
+        // @property {object} FormControl - UI input, initilaized with an empty string, and Array of validators for each input case.
+        // @class {object} Validator  - Provides a set of built-in validators that can be used by form controls.
+        // @property {function} pattern(@argument {string|RegExp} pattern) - Takes the control's state value, To match with a given Regex, returns a map of errors if the value is failing the regex or null.
+        // @property {function} requierd() - Validator that requires the control have a non-empty value.
+        // @property {function} minLength(@argument {number} minimumLength) - Validator that requires the length of the control's value to be greater than or equal to the provided minimum length.
+        this.email = new FormControl("", [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)]);
+        this.password = new FormControl("", [Validators.required, Validators.minLength(6)]);
+        this.repassword = new FormControl("", [Validators.required, Validators.minLength(6)]);
+        this.city = new FormControl("", Validators.required);
+        this.street = new FormControl("", Validators.required);
+        this.name = new FormControl("", [Validators.pattern(/^[A-Z][-'a-zA-Z]+$/), Validators.required]);
+        this.last_name = new FormControl("", [Validators.required, Validators.pattern(/^[A-Z][-'a-zA-Z]+$/)]);
+
     }
+    // @property {function} nextForm - determine if first part of the for is valid and the user may pass to the next form. 
     nextForm() {
 
         if (this.registerForm.invalid) {
             return;
         }
-        if (this.repassword.value != this.password.value) {
+        if (this.repassword.value !== this.password.value) {
             this.isPasswordsSame = false;
             return;
         }
-        this.firstForm = false;
+        this.isFormValid = false;
     }
 
     onSubmit() {
@@ -94,10 +101,10 @@ export class SignUpComponent implements OnInit {
         });
 
         let newUserObservable = this.userService.createUser(this.userSignUpInfo)
+        //on Success response from server.
         newUserObservable.subscribe(data => {
-            localStorage.setItem("isNewUser", "true");
            
-            console.log(data);
+            console.log('[DBG] New User created data res: '+ data);
 
             let newUserLogin: UserLoginDetails = {
                 email: this.userSignUpInfo.email,
@@ -106,11 +113,11 @@ export class SignUpComponent implements OnInit {
 
             let observable = this.userService.login(newUserLogin);
             observable.subscribe(successfulServerRequestData => {
-                console.log(successfulServerRequestData);
+                console.log('[DBG] Login after sign-up res: '+successfulServerRequestData);
 
                 this.userService.user_type = successfulServerRequestData.user_type;
                 this.userService.id = successfulServerRequestData.id;
-
+                
                 localStorage.setItem("token", successfulServerRequestData.token + "");
                 localStorage.setItem("user_id", JSON.stringify(successfulServerRequestData.id));
                 localStorage.setItem("isLoggedIn", "true");
@@ -121,8 +128,10 @@ export class SignUpComponent implements OnInit {
                     this.userService.city = userInfo.city,
                     this.userService.street = userInfo.street});
 
+                alert('Welcome To my humble shop !')
                 this.router.navigate(["/home"]);
             },
+            //on Bad response from server.
                 serverErrorResponse => { // Reaching here means that the server had failed
                     // serverErrorResponse is the object returned from the ExceptionsHandler
                     alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);

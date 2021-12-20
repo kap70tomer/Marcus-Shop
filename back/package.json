@@ -1,19 +1,22 @@
 {
   "name": "back",
   "version": "1.0.0",
-  "description": "",
+  "description": "Shopping Web REST server, with CRUD capabiltys controlled by HTTP requets from client side, built using Express middleware tech ",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
-  "author": "",
+  "author": "Tomer Schwartz",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
     "express-jwt": "^5.3.1",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
     "uuid": "^7.0.3"
   }
 }

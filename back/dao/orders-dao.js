@@ -23,9 +23,11 @@ async function closeCartUpdate(id){
 
 //Get Count for Orders in Store:
 async function counterOrder(){
+
     const sql = "SELECT count(id) as amount from orders";
 
     const counterResult = await connection.execute(sql);
+
     return counterResult;
 }
 

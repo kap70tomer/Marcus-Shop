@@ -67,7 +67,7 @@ import { User } from 'src/app/models/user';
            
             }, serverErrorResponse => { // Reaching here means that the server had failed.
                 // serverErrorResponse is the object returned from the ExceptionsHandler.
-                this.loginAttempt++;//allowing number of logins to protect from force brute.
+                this.loginAttempt++;//cap number of logins to protect from force brute.
                 if(this.loginAttempt == 4){
                     alert("you have reached Maximum login Attempts!");
                 }//alert user he reached the limit.
@@ -80,7 +80,7 @@ import { User } from 'src/app/models/user';
 
     }
     public startNew(){
-        //option to take a new cart.
+        //@propert {function} - On 'start shopping' button clicked take a new cart.
         localStorage.removeItem("isNewUser");
         this.router.navigate(['/shop']);
         this.shoppingCart.cart_id = null;

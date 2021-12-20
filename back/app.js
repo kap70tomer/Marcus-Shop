@@ -13,7 +13,7 @@ const fs = require("fs");
 
 const server = express();
 
-if (!fs.existsSync("./uploads")) { // Must create "/uploads" folder if not exist.
+if (!fs.existsSync("./uploads")) { // create "/uploads" folder if not exist.
     fs.mkdirSync("./uploads");
 }
 
