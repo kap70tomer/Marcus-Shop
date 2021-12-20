@@ -7,22 +7,21 @@ import { CanActivate, Router } from '@angular/router';
 })
 export class ShopGuard implements CanActivate {
 
-  public constructor(private router: Router) {}
+  public constructor(private router: Router) { }
 
-    public canActivate(): boolean {
-        const isLoggedIn = localStorage.getItem("isLoggedIn");
-        if(isLoggedIn == "true") {
-          
-            return true;
-        }
+  public canActivate(): boolean {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (isLoggedIn == "true") {
 
-        this.router.navigateByUrl("/home");
-      
-        return false;
+      return true;
     }
+
+    this.router.navigateByUrl("/home");
+
+    return false;
+  }
 
 }
 
 
 
-  
