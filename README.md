@@ -1,5 +1,5 @@
 # Marcus-Shop
-E-Commerce ShopApp, is an online-shop wholesale retailer that offers direct delivery of groceries and household products in bulk.  an easy to use app that allows customers to shop wholesale products on-the-go and without paying wholesale club membership fees. App users can enjoy the convenience of bulk shopping from anywhere anytime.
+E-Commerce app, is an online-shop wholesale retailer that offers direct delivery of groceries and household products in bulk.  an easy to use app that allows customers to shop wholesale products on-the-go and without paying wholesale club membership fees. App users can enjoy the convenience of bulk shopping from anywhere anytime.
 
 ## How to run the app 
 1.  Either fork or download the app and open the directory in the cli.
@@ -14,10 +14,17 @@ E-Commerce ShopApp, is an online-shop wholesale retailer that offers direct deli
 
 
 ## Technologies & Tools
-MySQL DB stores the apps data as 'single source of truth'.
+Built using MEAN stack - MySQL Express Angular Node.js.
 
-Connected to the app througth the back-end server, 
-Implamented with Node.js and Exspress framework, allowing to chained middlewares structure
+MySQL,DB stores the apps data as 'single source of truth'.
+
+Connected througth the back-end server, 
+Implamented with Node.js and Exspress framework, allowing to chained middlewares, to 
+build *REST api,
+where sensetive data and algorithem of the app is found. Seperated from the front-end.(clients side).
+
+
+REST is a software architectural style that defines the set of rules to be used for creating web services. Web services which follow the REST architectural style are known as RESTful web services. It allows requesting systems to access and manipulate web resources by using a uniform and predefined set of rules.
 
 
 ## Future Features to develope
