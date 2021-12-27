@@ -17,6 +17,28 @@ E-Commerce app, is an online-shop wholesale retailer that offers direct delivery
 
 
 ## Apps features & How it works
+~ SignUp & Login , Create a user to start using the apps services,
+Login and Authantication Users System, using JSON Web Token and Crypto to Hash and secure passwords.
+
+~ Take a cart and start shopping, 
+if not finnished cart is saved and can be resumed later.
+unclosed carts are displayed on home page with thier creation date.
+
+~ Order your shippmments directly to you, 
+on registration you are asked to fill your address for delivery.
+wich can quikly be used in the checkout page by double clicking on the address field.
+
+~ Search on checkout page allows you to go througth your cart products before finally closing the order.
+Highlighting the text that matches in your shopping cart.
+
+~ Filter all productes in store to categories.  
+using angular pipe to transform the list of displayed products in shop.
+
+~ 
+
+
+~ Admin Can Change any resource in the shop, but not Users or Orders.
+delete, add or edit any product details.
 
 
 ## Technologies & Tools
@@ -25,7 +47,7 @@ Built using MEAN stack - MySQL Express Angular Node.js.
 MySQL,DB stores the apps data as 'single source of truth'.
 
 Connected througth the back-end server, 
-Implamented with Node.js and Exspress framework, allowing to chained middlewares, to 
+Implamented with Node.js and Exspress framework, allowing to chain middlewares, to 
 build *REST api,
 where sensetive data and algorithem of the app is found. Seperated from the front-end.(clients side).
 
