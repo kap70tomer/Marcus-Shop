@@ -34,9 +34,6 @@ Highlighting the text that matches in your shopping cart.
 ~ Filter all productes in store to categories.  
 using angular pipe to transform the list of displayed products in shop.
 
-~ 
-
-
 ~ Admin Can Change any resource in the shop, but not Users or Orders.
 delete, add or edit any product details.
 
@@ -67,7 +64,13 @@ REST is a software architectural style that defines the set of rules to be used 
 ## How the app looks? UI- preview.
 
 ## Home page view.
+![homeshopFullscreen](https://user-images.githubusercontent.com/65711940/147880571-01218d96-c2cf-4284-9c89-a6d46ae727a5.jpeg)
 
 ## Main Shop page.
+![fullscreenShop](https://user-images.githubusercontent.com/65711940/147880565-66cde5bc-a7e8-4627-948e-53a48259baf2.jpeg)
+
+## Mobile View.
+![checkout](https://user-images.githubusercontent.com/65711940/147880592-fe382e5e-ed81-410e-a129-ec7ad4e13299.jpeg)
 
 ## Admins Dashboard.
+![dashboardShop](https://user-images.githubusercontent.com/65711940/147880732-5032ba40-78f1-46f1-b893-dc5e96f5f72f.jpeg)
