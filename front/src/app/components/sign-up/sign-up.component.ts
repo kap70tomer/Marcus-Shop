@@ -71,7 +71,7 @@ export class SignUpComponent implements OnInit {
     // @property {function} nextForm - determine if first part of the for is valid and the user may pass to the next form. 
     nextForm() {
 
-        if (this.registerForm.invalid) {
+        if (this.registerForm) {
             return;
         }
         if (this.repassword.value !== this.password.value) {
