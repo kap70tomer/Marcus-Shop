@@ -1,4 +1,4 @@
-<div *ngIf="firstForm" class="signUp1">
+<div class="signUp1">
 
     <h2>Register Today for Free and Start Your Shopping Adventure!</h2>
     <br>
@@ -48,7 +48,7 @@
 </div>
 
 
-<div *ngIf="!firstForm" class="signUp2">
+<div *ngIf="!registerForm" class="signUp2">
     <form class="container" [formGroup]="registerForm2" (ngSubmit)="onSubmit()">
         
         
