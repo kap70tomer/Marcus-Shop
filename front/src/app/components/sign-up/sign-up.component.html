@@ -8,7 +8,7 @@
         
         
             <label for="name">First Name</label>
-            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': name.touched && name.errors }">
+            <input id="name" name="name" type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': name.touched && name.errors }">
             <div *ngIf="name.touched && name.errors" class="invalid-feedback">
                 <div *ngIf="name.errors?.required">First Name is required</div>
                 <div *ngIf="name.errors?.pattern"> Must begin with Capital letter </div>
@@ -16,21 +16,27 @@
         
         
             <label for="email">E-mail</label>
-            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': email.touched && email.errors }" />
+            <input 
+            id="email" 
+            name="email" 
+            class="form-control"
+            type="text" 
+            formControlName="email" 
+            [ngClass]="{ 'is-invalid': email.touched && email.errors }" />
             <div *ngIf="email.touched && email.errors" class="invalid-feedback">
                 <div *ngIf="email.errors?.required">E-mail is required</div>
                 <div *ngIf="email.errors?.pattern"> invalid Email</div>
             </div>
         
             <label for="password">Password</label>
-            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': password.touched && password.errors }" />
+            <input id="password" name="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': password.touched && password.errors }" />
             <div *ngIf="password.touched && password.errors" class="invalid-feedback">
                 <div *ngIf="password.errors?.required">Password is required</div>
                 <div *ngIf="password.errors?.minlength">Password must be at least 6 characters</div>
             </div>
             
             <label for="repassword">re-Enter Password</label>
-            <input type="password" formControlName="repassword" class="form-control" [ngClass]="{ 'is-invalid': repassword.touched && repassword.errors && !isPasswordsSame }" />
+            <input id="repassword" name="repassword" type="password" formControlName="repassword" class="form-control" [ngClass]="{ 'is-invalid': repassword.touched && repassword.errors && !isPasswordsSame }" />
             <div *ngIf="repassword.touched && repassword.errors" class="invalid-feedback">
                 <div *ngIf="repassword.errors?.required">Please re enter your password</div>
                 <div *ngIf="isPasswordsSame">Passwords do not Match</div> 
@@ -48,19 +54,19 @@
 </div>
 
 
-<div *ngIf="!registerForm" class="signUp2">
-    <form class="container" [formGroup]="registerForm2" (ngSubmit)="onSubmit()">
-        
-        
+<div *ngIf="!registerForm.valid" class="signUp2">
+    <form id="registerForm2" name="registerForm2" class="container" [formGroup]="registerForm2" (ngSubmit)="onSubmit()">
+
         <label for="last_name">Last Name</label>
-        <input type="text" formControlName="last_name" class="form-control" [ngClass]="{ 'is-invalid': last_name.touched && last_name.errors }" />
+        <input id="last_name" name="last_name" type="text" formControlName="last_name" class="form-control" [ngClass]="{ 'is-invalid': last_name.touched && last_name.errors }" />
+        
         <div *ngIf="last_name.touched && last_name.errors" class="invalid-feedback">
             <div *ngIf="last_name.errors?.required">Last Name is required</div>
             <div *ngIf="last_name.errors?.pattern">First letter must be Capital</div>
         </div>
         
         <label for="city">City</label>
-        <select formControlName = "city" class="form-control custom-select d-block w-100" id="state" required [ngClass]="{ 'is-invalid': city.touched && city.errors }" >
+        <select formControlName="city" class="form-control custom-select d-block w-100" id="city" name="city" required [ngClass]="{ 'is-invalid': city.touched && city.errors }" >
             <option value="">Choose..</option>
             <option>JARUSALEM</option>
             <option>TEL-AVIV</option>
@@ -78,14 +84,14 @@
         </div>
 
         <label for="street">Street</label>
-        <input type="text" formControlName="street" class="form-control" [ngClass]="{ 'is-invalid': street.touched && street.errors }" />
+        <input id="street" name="street" type="text" formControlName="street" class="form-control" [ngClass]="{ 'is-invalid': street.touched && street.errors }" />
         <div *ngIf="street.touched && street.errors" class="invalid-feedback">
             <div *ngIf="street.errors?.required">Street Address is required</div>
         </div>
         
         <div class="form-group">
             <button
-            [disabled]="registerForm.invalid" type="button" class="btn btn-primary" (click)="onSubmit()">
+            [disabled]="registerForm2.invalid" type="button" class="btn btn-primary" (click)="onSubmit()">
                 Finish
             </button>
             <a routerLink="/" class="btn btn-link">Cancel</a>
