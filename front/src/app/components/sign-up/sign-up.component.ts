@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/users.service';
 import { UserSignUpInfo } from 'src/app/models/userSignUpInfo';
 import { UserLoginDetails } from 'src/app/models/UserLoginDetails';
@@ -12,63 +12,56 @@ import { UserLoginDetails } from 'src/app/models/UserLoginDetails';
 })
 
 //@class {component} SignUpComponent - display the user registration form for the app. 
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit{
 
-    public registerForm: FormGroup;
-    public registerForm2: FormGroup;
-    public email: FormControl;
-    public password: FormControl;
-    public name: FormControl;
-    public last_name: FormControl;
-    public city: FormControl;
-    public street: FormControl;
-    public repassword: FormControl;
-    public isPasswordsSame: Boolean = false;
+    registerForm: FormGroup;
+    registerForm2: FormGroup;
+    email: FormControl;
+    password: FormControl;
+    name: FormControl;
+    last_name: FormControl;
+    city: FormControl;
+    street: FormControl;
+    repassword: FormControl;
+    
+    isPasswordsSame: Boolean = false;
 
+    userSignUpInfo: UserSignUpInfo;
 
-    public userSignUpInfo: UserSignUpInfo;
+    submitted = false;
+    isFormValid = false;
 
-    public submitted = false;
-    public isFormValid = true;
-
-    constructor(private router: Router, private userService: UserService) {
-        this.userSignUpInfo = new UserSignUpInfo("","","","","","");
-        this.userService = userService;
-        this.isPasswordsSame = false;
+    constructor(private router: Router, private userService: UserService, private fb:FormBuilder) {
+  
+        
     }
-
-    //@property {function} ngOnInit - On page load, after the 'injections stage'.
+        //@property {function} ngOnInit - On page load, after the 'injections stage'.
     ngOnInit() {
         
         //@property {object} registerForm - Fist out of two parts registration <form>, bind to a collection of controls that takes values from the UI, used to create new User in the system.
-        this.registerForm = new FormGroup({
-            email: this.email,
-            password: this.password,
-            repassword: this.repassword
+        this.registerForm = this.fb.group({
+            name : new FormControl("", [Validators.pattern(/^[A-Z][-'a-zA-Z]+$/), Validators.required]),
+            email: new FormControl("", [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)]),
+            password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.min(6), Validators.max(15)]),
+            repassword: new FormControl("", [Validators.required, Validators.minLength(6), Validators.min(6), Validators.max(15)]),
         })
         
         //@property {object} registerForm2 - Second part of registration <form>, takes personal details values from the UI, used to create new User in the system.
-        this.registerForm2 = new FormGroup({  
-            name: this.name,
-            last_name: this.last_name,
-            city: this.city,
-            street: this.street
+        this.registerForm2 = this.fb.group({  
+            city : new FormControl("", Validators.required),
+            street : new FormControl("", Validators.required),
+            last_name : new FormControl("", [Validators.required, Validators.pattern(/^[A-Z][-'a-zA-Z]+$/)])
         })
         // @property {object} FormControl - UI input, initilaized with an empty string, and Array of validators for each input case.
         // @class {object} Validator  - Provides a set of built-in validators that can be used by form controls.
         // @property {function} pattern(@argument {string|RegExp} pattern) - Takes the control's state value, To match with a given Regex, returns a map of errors if the value is failing the regex or null.
         // @property {function} requierd() - Validator that requires the control have a non-empty value.
         // @property {function} minLength(@argument {number} minimumLength) - Validator that requires the length of the control's value to be greater than or equal to the provided minimum length.
-        this.email = new FormControl("", [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)]);
-        this.password = new FormControl("", [Validators.required, Validators.minLength(6)]);
-        this.repassword = new FormControl("", [Validators.required, Validators.minLength(6)]);
-        this.city = new FormControl("", Validators.required);
-        this.street = new FormControl("", Validators.required);
-        this.name = new FormControl("", [Validators.pattern(/^[A-Z][-'a-zA-Z]+$/), Validators.required]);
-        this.last_name = new FormControl("", [Validators.required, Validators.pattern(/^[A-Z][-'a-zA-Z]+$/)]);
-
-    }
-    // @property {function} nextForm - determine if first part of the for is valid and the user may pass to the next form. 
+       
+        
+        
+        }
+        // @property {function} nextForm - determine if first part of the for is valid and the user may pass to the next form. 
     nextForm() {
 
         if (this.registerForm) {
@@ -80,6 +73,7 @@ export class SignUpComponent implements OnInit {
         }
         this.isFormValid = false;
     }
+   
 
     onSubmit() {
 
