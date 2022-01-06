@@ -1,50 +1,46 @@
-<div class="signUp1">
-
-    <h2>Register Today for Free and Start Your Shopping Adventure!</h2>
-    <br>
-    <P>*ALL fields are required*</P>
-
-    <form class="container" [formGroup]="registerForm">
+<div class="signUp1" class="container">
+    
+    <h3>Sign Up Form</h3>
+    <form name="registerForm" [formGroup]="registerForm">   
+        <label for="name">First Name</label>
+        <input id="name" name="name" type="text" formControlName="name" class="form-control"/>
+        <div *ngIf="name.touched && name.errors" class="invalid-feedback" >
+            <div *ngIf="name.errors.required">First Name is required</div>
+            <div *ngIf="name.errors.pattern"> Must begin with Capital letter </div>
+        </div>
         
         
-            <label for="name">First Name</label>
-            <input id="name" name="name" type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': name.touched && name.errors }">
-            <div *ngIf="name.touched && name.errors" class="invalid-feedback">
-                <div *ngIf="name.errors?.required">First Name is required</div>
-                <div *ngIf="name.errors?.pattern"> Must begin with Capital letter </div>
-            </div>
+        <label for="email">E-mail</label>
+        <input 
+        class="form-control"
+        id="email" 
+        type="text" 
+        formControlName="email" 
+       />
+        <div *ngIf="email.touched && email.errors" class="invalid-feedback">
+            <div *ngIf="email.errors?.required">E-mail is required</div>
+            <div *ngIf="email.errors?.pattern"> invalid Email</div>
+        </div>
+        
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': password.touched && password.errors }" />
+        <div *ngIf="password.touched && password.errors" class="invalid-feedback">
+            <div *ngIf="password.errors?.required">Password is required</div>
+            <div *ngIf="password.errors?.minlength">Password must be at least 6 characters</div>
+        </div>
+        
+        <label for="repassword">re-Enter Password</label>
+        <input id="repassword" name="repassword" type="password" formControlName="repassword" class="form-control" [ngClass]="{ 'is-invalid': repassword.touched && repassword.errors && !isPasswordsSame }" />
+        <div *ngIf="repassword.touched && repassword.errors" class="invalid-feedback">
+            <div *ngIf="repassword.errors?.required">Please re enter your password</div>
+            <div *ngIf="isPasswordsSame">Passwords do not Match</div> 
+        </div>
+        <br>
         
         
-            <label for="email">E-mail</label>
-            <input 
-            id="email" 
-            name="email" 
-            class="form-control"
-            type="text" 
-            formControlName="email" 
-            [ngClass]="{ 'is-invalid': email.touched && email.errors }" />
-            <div *ngIf="email.touched && email.errors" class="invalid-feedback">
-                <div *ngIf="email.errors?.required">E-mail is required</div>
-                <div *ngIf="email.errors?.pattern"> invalid Email</div>
-            </div>
-        
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': password.touched && password.errors }" />
-            <div *ngIf="password.touched && password.errors" class="invalid-feedback">
-                <div *ngIf="password.errors?.required">Password is required</div>
-                <div *ngIf="password.errors?.minlength">Password must be at least 6 characters</div>
-            </div>
-            
-            <label for="repassword">re-Enter Password</label>
-            <input id="repassword" name="repassword" type="password" formControlName="repassword" class="form-control" [ngClass]="{ 'is-invalid': repassword.touched && repassword.errors && !isPasswordsSame }" />
-            <div *ngIf="repassword.touched && repassword.errors" class="invalid-feedback">
-                <div *ngIf="repassword.errors?.required">Please re enter your password</div>
-                <div *ngIf="isPasswordsSame">Passwords do not Match</div> 
-            </div>
-            <br>
-            
-
-             <button [disabled]="registerForm.errors?.invalid && !isPasswordsSame" class="btn btn-primary" (click)="nextForm()">
+        <P>*ALL fields are required*</P>
+        <p>-- {{registerForm}}</p>
+        <button [disabled]="registerForm.invalid && !isPasswordsSame" class="btn btn-primary" (click)="nextForm()">
                 Next 1/2
             </button>        
             <a routerLink="/" class="btn btn-link">Cancel</a>
@@ -54,15 +50,22 @@
 </div>
 
 
-<div *ngIf="!registerForm.valid" class="signUp2">
+<div class="signUp2">
     <form id="registerForm2" name="registerForm2" class="container" [formGroup]="registerForm2" (ngSubmit)="onSubmit()">
 
         <label for="last_name">Last Name</label>
-        <input id="last_name" name="last_name" type="text" formControlName="last_name" class="form-control" [ngClass]="{ 'is-invalid': last_name.touched && last_name.errors }" />
+        <input 
+            class="form-control" 
+            type="text" 
+            id="last_name" 
+            name="last_name" 
+            formControlName="last_name" 
+            [ngClass]="{ 'is-invalid': last_name.touched && last_name.errors }"
+        />
         
         <div *ngIf="last_name.touched && last_name.errors" class="invalid-feedback">
-            <div *ngIf="last_name.errors?.required">Last Name is required</div>
-            <div *ngIf="last_name.errors?.pattern">First letter must be Capital</div>
+            <div *ngIf="last_name.errors.required">Last Name is required</div>
+            <div *ngIf="last_name.errors.pattern">First letter must be Capital</div>
         </div>
         
         <label for="city">City</label>
