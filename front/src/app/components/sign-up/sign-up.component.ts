@@ -14,22 +14,19 @@ import { UserLoginDetails } from 'src/app/models/UserLoginDetails';
 //@class {component} SignUpComponent - display the user registration form for the app. 
 export class SignUpComponent implements OnInit{
 
-    registerForm: FormGroup;
-    registerForm2: FormGroup;
-    email: FormControl;
-    password: FormControl;
-    name: FormControl;
-    last_name: FormControl;
-    city: FormControl;
-    street: FormControl;
-    repassword: FormControl;
+    public registerForm: FormGroup;
+    public registerForm2: FormGroup;
+    public email: FormControl;
+    public password: FormControl;
+    public first_name: FormControl;
+    public last_name: FormControl;
+    public city: FormControl;
+    public street: FormControl;
+    public repassword: FormControl;
     
-    isPasswordsSame: Boolean = false;
-
-    userSignUpInfo: UserSignUpInfo;
-
-    submitted = false;
-    isFormValid = false;
+    public userSignUpInfo: UserSignUpInfo;
+    public isPasswordsSame: Boolean = false;
+    public submitted = false;
 
     constructor(private router: Router, private userService: UserService, private fb:FormBuilder) {
   
@@ -40,17 +37,17 @@ export class SignUpComponent implements OnInit{
         
         //@property {object} registerForm - Fist out of two parts registration <form>, bind to a collection of controls that takes values from the UI, used to create new User in the system.
         this.registerForm = this.fb.group({
-            name : new FormControl("", [Validators.pattern(/^[A-Z][-'a-zA-Z]+$/), Validators.required]),
-            email: new FormControl("", [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)]),
-            password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.min(6), Validators.max(15)]),
-            repassword: new FormControl("", [Validators.required, Validators.minLength(6), Validators.min(6), Validators.max(15)]),
+            'first_name': new FormControl("", [Validators.pattern(/^[A-Z][-'a-zA-Z]+$/), Validators.required, Validators.minLength(6)]),
+            'email': new FormControl("", [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)]),
+            'password': new FormControl("", [Validators.required, Validators.minLength(6), Validators.min(6), Validators.max(15)]),
+            'repassword': new FormControl("", [Validators.required, Validators.minLength(6), Validators.min(6), Validators.max(15)]),
         })
         
         //@property {object} registerForm2 - Second part of registration <form>, takes personal details values from the UI, used to create new User in the system.
         this.registerForm2 = this.fb.group({  
-            city : new FormControl("", Validators.required),
-            street : new FormControl("", Validators.required),
-            last_name : new FormControl("", [Validators.required, Validators.pattern(/^[A-Z][-'a-zA-Z]+$/)])
+            'city': new FormControl("", Validators.required),
+            'street': new FormControl("", Validators.required),
+            'last_name': new FormControl("", [Validators.required, Validators.pattern(/^[A-Z][-'a-zA-Z]+$/)])
         })
         // @property {object} FormControl - UI input, initilaized with an empty string, and Array of validators for each input case.
         // @class {object} Validator  - Provides a set of built-in validators that can be used by form controls.
@@ -62,16 +59,13 @@ export class SignUpComponent implements OnInit{
         
         }
         // @property {function} nextForm - determine if first part of the for is valid and the user may pass to the next form. 
-    nextForm() {
-
-        if (this.registerForm) {
-            return;
+    samePasswordValidator() {
+        if (this.submitted && this.repassword.value !== this.password.value) {
+            return this.isPasswordsSame = false;
         }
-        if (this.repassword.value !== this.password.value) {
-            this.isPasswordsSame = false;
-            return;
+        else{
+            return this.isPasswordsSame = true;
         }
-        this.isFormValid = false;
     }
    
 
@@ -86,7 +80,7 @@ export class SignUpComponent implements OnInit{
 
         // convenience getter for easy access to form fields
         this.userSignUpInfo = ({
-            name: this.name.value,
+            name: this.first_name.value,
             password: this.password.value,
             email: this.email.value,
             last_name: this.last_name.value,
