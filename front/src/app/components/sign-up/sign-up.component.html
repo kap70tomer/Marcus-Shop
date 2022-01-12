@@ -1,113 +1,117 @@
 <div class="signUp1" class="container">
-    <p>-- {{ registerForm.value | json }}</p>
+    <p>-[DBG]- {{ registerForm.value | json }}</p>
 
-    <h3>Sign Up Form</h3>
-    <form name="registerForm" [formGroup]="registerForm">   
-        <label for="name">First Name</label>
-        <input type="text" formControlName="first_name" class="form-control"/>
-        <div class="invalid-feedback" >
-            <P>NOT VALID. </P>
-            <div *ngIf="this.registerForm.controls.first_name.errors.required">First Name is required</div>
-            <div *ngIf="this.registerForm.controls.first_name.errors.pattern"> Must begin with Capital letter </div>
-        </div>
-        
-        
-        <label for="email">E-mail</label>
-        <input 
-        class="form-control"
-        id="email" 
-        type="text" 
-        formControlName="email" 
-       />
-        <div *ngIf="registerForm.errors" class="invalid-feedback">
-            <div *ngIf="email.errors.required">E-mail is required</div>
-            <div *ngIf="email.errors.email"> invalid Email</div>
-        </div>
-        
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" formControlName="password" class="form-control" 
-        />
-        <div *ngIf="registerForm.errors" class="invalid-feedback">
-            <div *ngIf="password.errors?.required">Password is required</div>
-            <div *ngIf="password.errors?.minlength">Password must be at least 6 characters</div>
-        </div>
-        
-        <label for="repassword">re-Enter Password</label>
-        <input id="repassword" name="repassword" type="password" formControlName="repassword" class="form-control" 
-         />
-        <div *ngIf="registerForm.errors" class="invalid-feedback">
-            <div *ngIf="repassword.errors?.required">Please re enter your password</div>
-            <div *ngIf="!isPasswordsSame">Passwords do not Match</div> 
-        </div>
-        <br>
-        
-        
-        <P>*ALL fields are required*</P>
-        
-        <button [disabled]="registerForm.invalid && !isPasswordsSame" class="btn btn-primary">
-                Next 1/2
-            </button>        
-            <a routerLink="/" class="btn btn-link">Cancel</a>
-    </form>
-    
-    
-</div>
+    <h3 class="signup-form-header">Sign Up Form</h3>
+    <form class="needs-validation" name="registerForm" [formGroup]="registerForm">
 
-
-<div class="signUp2">
-    <form id="registerForm2" name="registerForm2" class="container" [formGroup]="registerForm2" (ngSubmit)="onSubmit()">
-
-        <label for="last_name">Last Name</label>
-        <input 
-            class="form-control" 
-            type="text" 
-            id="last_name" 
-            name="last_name" 
-            formControlName="last_name" 
-        />
-        
-        <div *ngIf="registerForm2.errors" class="invalid-feedback">
-            <div *ngIf="last_name.errors.required">Last Name is required</div>
-            <div *ngIf="last_name.errors.pattern">First letter must be Capital</div> 
-        </div>
-        
-        <label for="city">City</label>
-        <select 
-            id="city" name="city" 
-            formControlName="city" 
-            class="form-control custom-select d-block w-100" 
-            >
-            <option value="">Choose..</option>
-            <option>JARUSALEM</option>
-            <option>TEL-AVIV</option>
-            <option>RISHON-LEZION</option>
-            <option>PETAH-TIKVA</option>
-            <option>BEER-SHEVA</option>
-            <option>NETANIA</option>
-            <option>HIFA</option>
-            <option>EILAT</option>
-            <option>RANANA</option>
-            <option>ASHDOD</option>
-        </select>
-        <div *ngIf="registerForm2.errors" class="invalid-feedback">
-            <div *ngIf="city.errors?.required"> Choose City of living</div>
-        </div>
-
-        <label for="street">Street</label>
-        <input id="street" name="street" type="text" formControlName="street" class="form-control" />
-        <div *ngIf="registerForm2.errors" class="invalid-feedback">
-            <div *ngIf="street.errors?.required">Street Address is required</div>
-        </div>
-        
         <div class="form-group">
-            
-            <p>{{registerForm2.valid}}</p>
-            <button
-            [disabled]="registerForm2.invalid" type="button" class="btn btn-primary" (click)="onSubmit()">
-                Finish
-            </button>
-            <a routerLink="/" class="btn btn-link">Cancel</a>
+            <label for="first_name">First Name</label>
+            <input [ngClass]="first_name.errors && (first_name.dirty || first_name.touched) ? 'is-invalid':''"
+                type="text" formControlName="first_name" class="form-control" />
+            <div class="form-control-feedback invalid-feedback">
+                <div *ngIf="first_name.errors?.required">First Name is required</div>
+                <div *ngIf="first_name.errors?.minlength">Name must be longer then 3 letters</div>
+            </div>
         </div>
+
+
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input [ngClass]="email.errors && (email.dirty || email.touched) ? 'is-invalid':''" class="form-control"
+                type="text" formControlName="email" />
+            <div class="form-control-feedback invalid-feedback">
+                <div *ngIf="email.errors?.required">Email is required</div>
+                <div *ngIf="email.errors?.pattern">Please provide a valid E-mail</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label for="password">Password</label>
+            <input [ngClass]="password.errors && (password.dirty || password.touched) ? 'is-invalid':''" id="password"
+                name="password" type="password" formControlName="password" class="form-control" />
+            <div class="form-control-feedback invalid-feedback">
+                <div *ngIf="password.errors?.required">Password is required</div>
+                <div *ngIf="password.errors?.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label for="repassword">re-Enter Password</label>
+            <input [ngClass]="repassword.errors && (repassword.dirty || repassword.touched) ? 'is-invalid':''"
+                id="repassword" name="repassword" type="password" formControlName="repassword" class="form-control" />
+            <div class="form-control-feedback invalid-feedback">
+                <div *ngIf="repassword.errors.required">Please re enter your password</div>
+                <div *ngIf="!isPasswordsSame">Passwords do not Match</div>
+            </div>
+        </div>
+
+
+        <i>This is a two parts form, COMPLETE THIS PART TO CONTINUE</i>
+
     </form>
+
+
 </div>
 
+
+<div *ngIf="registerForm.valid" class="signUp2">
+    <form id="registerForm2" class="needs-validation" name="registerForm2" class="container" [formGroup]="registerForm2"
+        (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+
+            <label for="last_name">Last Name</label>
+            <input [ngClass]="last_name.errors && (last_name.dirty || last_name.touched) ? 'is-invalid':''"
+                    class="form-control" type="text" formControlName="last_name" />
+
+            <div class="form-control-feedback invalid-feedback">
+                <div *ngIf="last_name.errors?.required">Last Name is required</div>
+                <div *ngIf="last_name.errors?.pattern">First letter must be Capital</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="city">City</label>
+            <select [ngClass]="city.errors && (city.dirty || city.touched) ? 'is-invalid':''" id="city" name="city"
+                    formControlName="city" class="form-control custom-select d-block w-100">
+                <option value="">Where are you from?..</option>
+                <option>JARUSALEM</option>
+                <option>TEL-AVIV</option>
+                <option>RISHON-LEZION</option>
+                <option>PETAH-TIKVA</option>
+                <option>BEER-SHEVA</option>
+                <option>NETANIA</option>
+                <option>HIFA</option>
+                <option>EILAT</option>
+                <option>RANANA</option>
+                <option>ASHDOD</option>
+            </select>
+            <div class="form-control-feedback invalid-feedback">
+                <div *ngIf="city.errors?.required"> i need to know your City of living</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="street">Street</label>
+            <input [ngClass]="street.errors && (street.dirty || street.touched) ? 'is-invalid':''" id="street"
+                name="street" type="text" formControlName="street" class="form-control" />
+            <div class="form-control-feedback invalid-feedback">
+                <div *ngIf="street.errors?.required">Street Address is required</div>
+            </div>
+        </div>
+
+
+        <p>{{registerForm2.valid}}</p>
+        <button [disabled]="registerForm.invalid || registerForm2.invalid" type="button" class="btn btn-primary"
+            (click)="onSubmit()">
+            Finish
+        </button>
+        <a routerLink="/" class="btn btn-link">Cancel</a>
+
+    </form>
+</div>
+<hr>
+
+<a routerLink="/" class="btn btn-link">cancel</a>
