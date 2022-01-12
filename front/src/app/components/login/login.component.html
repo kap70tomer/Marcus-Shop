@@ -3,18 +3,24 @@
     <form [formGroup]="loginForm" (submit)="login()">
         <h2>Welcome Guest!</h2>
         <!-- <input type="text" placeholder="User name" name="username" [formControl]="userName"><br> -->
-        <input type="text" placeholder="Email" [formControl]="email"><span class="glyphicon glyphicon-envelope"></span>
+        <input 
+        [ngClass]="email.errors && (email.dirty || email.touched) ? 'is-invalid':''"
+        type="text" placeholder="Email" [formControl]="email"><span class="glyphicon glyphicon-envelope"></span>
         <br>
-        <span *ngIf="email.errors?.required && email.touched"> Email is required!</span>
-        <span *ngIf="email.errors?.pattern && email.touched">invalid Email!</span>
+        <span class="invalid-feedback" *ngIf="email.errors?.required && email.touched"> Email is required!</span>
+        <span class="invalid-feedback" *ngIf="email.errors?.pattern && email.touched">invalid Email!</span>
         <br>
-        <input type="password" placeholder="Password" name="password" [formControl]="password">
+
+        <input
+        [ngClass]="password.errors && (password.dirty || password.touched) ? 'is-invalid':''"
+        
+        type="password" placeholder="Password" name="password" [formControl]="password">
         <span class="glyphicon glyphicon-lock"></span>
 
         <br>
-        <span *ngIf="password.invalid && password.touched">Missing password!</span>       
+        <span *ngIf="password.invalid && password.touched" class="invalid-feedback">Missing password!</span>       
         <br>
-        <input [disabled]="loginForm.invalid && this.loginAttempt==4" type="submit" id="loginButton" value="Login">
+        <input [disabled]="loginForm.invalid" type="submit" id="loginButton" value="Login">
         
         <a href="/signup">
         <input class="col-12" type="button" id="signUpButton" value="Sign up">
