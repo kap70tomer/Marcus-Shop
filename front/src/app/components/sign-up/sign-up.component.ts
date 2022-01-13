@@ -50,9 +50,9 @@ export class SignUpComponent implements OnInit{
     }
     createFormControlls(){
         this.first_name = new FormControl("", [Validators.required, Validators.minLength(3)]);
-        this.email = new FormControl("", [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)]);
-        this.password = new FormControl("", [Validators.required, Validators.minLength(8), Validators.min(8), Validators.max(16)]);
-        this.repassword = new FormControl("", [Validators.required, Validators.minLength(8), Validators.min(8), Validators.max(16)]);
+        this.email = new FormControl("", [Validators.required, Validators.email]);
+        this.password = new FormControl("", [Validators.required, Validators.minLength(8), Validators.maxLength(16)]);
+        this.repassword = new FormControl("", [Validators.required, Validators.minLength(8), Validators.maxLength(16)]);
         this.city = new FormControl("", Validators.required);
         this.street= new FormControl("", Validators.required);
         this.last_name = new FormControl("", [Validators.required, Validators.pattern(/^[A-Z][-'a-zA-Z]+$/)]);
@@ -74,12 +74,11 @@ export class SignUpComponent implements OnInit{
     }
         // @property {function} nextForm - determine if first part of the for is valid and the user may pass to the next form. 
     samePasswordValidator() {
-        if (this.submitted && this.repassword.value !== this.password.value) {
-            return this.isPasswordsSame = false;
+        if(this.repassword.value == this.password.value) {
+            this.isPasswordsSame = true;
+            return;
         }
-        else{
-            return this.isPasswordsSame = true;
-        }
+        return this.isPasswordsSame = false;
     }
    
 

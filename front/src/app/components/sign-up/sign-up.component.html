@@ -1,52 +1,74 @@
-<div class="signUp1" class="container">
-    <p>-[DBG]- {{ registerForm.value | json }}</p>
+<div class="signUp1" class="card">
 
-    <h3 class="signup-form-header">Sign Up Form</h3>
-    <form class="needs-validation" name="registerForm" [formGroup]="registerForm">
+    <!-- <p>-[DBG]- {{ registerForm.value | json }}</p> -->
+    <h3 class="signup-form-header card-header">Sign Up Form</h3>
+
+    <form class="needs-validation card-body" name="registerForm" [formGroup]="registerForm">
 
         <div class="form-group">
             <label for="first_name">First Name</label>
-            <input [ngClass]="first_name.errors && (first_name.dirty || first_name.touched) ? 'is-invalid':''"
-                type="text" formControlName="first_name" class="form-control" />
-            <div class="form-control-feedback invalid-feedback">
-                <div *ngIf="first_name.errors?.required">First Name is required</div>
-                <div *ngIf="first_name.errors?.minlength">Name must be longer then 3 letters</div>
-            </div>
+            <input 
+                [ngClass]="{ 'is-invalid' : first_name.errors && (first_name.dirty || first_name.touched),
+                             'is-valid': first_name.valid && (first_name.dirty || first_name.touched)
+                            }" 
+                type="text" 
+                formControlName="first_name" 
+                class="form-control" />
+            
+                <div class="form-control-feedback valid-feedback">looks good!</div>
+                <div class="form-control-feedback invalid-feedback">
+                    <div *ngIf="first_name.errors?.required">First Name is required</div>
+                    <div *ngIf="first_name.errors?.minlength">Name must be longer then 3 letters</div>
+                </div>
         </div>
-
 
         <div class="form-group">
             <label for="email">E-mail</label>
-            <input [ngClass]="email.errors && (email.dirty || email.touched) ? 'is-invalid':''" class="form-control"
-                type="text" formControlName="email" />
+            <input 
+            class="form-control" 
+            type="text" 
+            placeholder="Email_yours@walla.com"
+            formControlName="email" 
+            [ngClass]="{ 'is-invalid' : email.errors && (email.dirty || email.touched),
+                         'is-valid' : email.valid && (email.dirty || email.touched)
+                        }" />
+            <div class="form-control-feedback valid-feedback">looks good!</div>
             <div class="form-control-feedback invalid-feedback">
                 <div *ngIf="email.errors?.required">Email is required</div>
-                <div *ngIf="email.errors?.pattern">Please provide a valid E-mail</div>
+                <div *ngIf="email.errors?.email">Please provide a valid E-mail</div>
             </div>
         </div>
 
         <div class="form-group">
 
             <label for="password">Password</label>
-            <input [ngClass]="password.errors && (password.dirty || password.touched) ? 'is-invalid':''" id="password"
+            <input 
+                [ngClass]="{ 'is-invalid' : password.errors && (password.dirty || password.touched),
+                             'is-valid' : password.valid && (password.dirty || password.touched)
+                            }"
                 name="password" type="password" formControlName="password" class="form-control" />
             <div class="form-control-feedback invalid-feedback">
                 <div *ngIf="password.errors?.required">Password is required</div>
-                <div *ngIf="password.errors?.minlength">Password must be at least 6 characters</div>
+                <div *ngIf="password.errors?.minlength">Password must be at least 8 you have now {{password.errors?.minlength.actualLength | json}}</div>
+                <div *ngIf="password.errors?.maxlength">Password must have less then 16 characters. you have {{password.errors?.maxlength.actualLength | json}} allready!</div>
             </div>
+            <div class="form-control-feedback valid-feedback">looks good!</div>
+            
         </div>
 
         <div class="form-group">
 
             <label for="repassword">re-Enter Password</label>
-            <input [ngClass]="repassword.errors && (repassword.dirty || repassword.touched) ? 'is-invalid':''"
-                id="repassword" name="repassword" type="password" formControlName="repassword" class="form-control" />
+            <input [ngClass]="{ 'is-invalid' : repassword.errors && (repassword.dirty || repassword.touched),
+            'is-valid' : repassword.valid && (repassword.dirty || repassword.touched)
+           }"
+                id="repassword" name="repassword" placeholder="Confirm password" type="password" formControlName="repassword" class="form-control" />
             <div class="form-control-feedback invalid-feedback">
-                <div *ngIf="repassword.errors.required">Please re enter your password</div>
-                <div *ngIf="!isPasswordsSame">Passwords do not Match</div>
+                <div *ngIf="repassword.errors?.required">Please re enter your password</div>
+                <div *ngIf="password.value !== repassword.value">Passwords do not Match!</div>
             </div>
+            <div class="form-control-feedback valid-feedback">looks good!</div>
         </div>
-
 
         <i>This is a two parts form, COMPLETE THIS PART TO CONTINUE</i>
 
@@ -64,7 +86,7 @@
 
             <label for="last_name">Last Name</label>
             <input [ngClass]="last_name.errors && (last_name.dirty || last_name.touched) ? 'is-invalid':''"
-                    class="form-control" type="text" formControlName="last_name" />
+                class="form-control" type="text" formControlName="last_name" />
 
             <div class="form-control-feedback invalid-feedback">
                 <div *ngIf="last_name.errors?.required">Last Name is required</div>
@@ -75,7 +97,7 @@
         <div class="form-group">
             <label for="city">City</label>
             <select [ngClass]="city.errors && (city.dirty || city.touched) ? 'is-invalid':''" id="city" name="city"
-                    formControlName="city" class="form-control custom-select d-block w-100">
+                formControlName="city" class="form-control custom-select d-block w-100">
                 <option value="">Where are you from?..</option>
                 <option>JARUSALEM</option>
                 <option>TEL-AVIV</option>
