@@ -78,8 +78,9 @@
 </div>
 
 
-<div *ngIf="registerForm.valid" class="signUp2">
-    <form id="registerForm2" class="needs-validation" name="registerForm2" class="container" [formGroup]="registerForm2"
+<div *ngIf="!registerForm.valid" class="signUp2 card">
+    
+    <form id="registerForm2" class="needs-validation card-body" name="registerForm2" [formGroup]="registerForm2"
         (ngSubmit)="onSubmit()">
 
         <div class="form-group">
@@ -97,7 +98,7 @@
         <div class="form-group">
             <label for="city">City</label>
             <select [ngClass]="city.errors && (city.dirty || city.touched) ? 'is-invalid':''" id="city" name="city"
-                formControlName="city" class="form-control custom-select d-block w-100">
+                formControlName="city" class="form-control">
                 <option value="">Where are you from?..</option>
                 <option>JARUSALEM</option>
                 <option>TEL-AVIV</option>
@@ -124,16 +125,14 @@
             </div>
         </div>
 
-
-        <p>{{registerForm2.valid}}</p>
         <button [disabled]="registerForm.invalid || registerForm2.invalid" type="button" class="btn btn-primary"
             (click)="onSubmit()">
             Finish
         </button>
-        <a routerLink="/" class="btn btn-link">Cancel</a>
 
     </form>
 </div>
 <hr>
 
-<a routerLink="/" class="btn btn-link">cancel</a>
+<a routerLink="/" class="btn btn-link">Cancel</a>
+<br>    

@@ -1,12 +1,4 @@
-.signUp1{
-    padding: 1rem;
-}
-
-
-
-.form-group>input{
-    width: 55%;
-    margin-left: auto;
-    margin-right: auto;
-
+.form-group{
+    max-width: 550px;
+    margin: auto;
 }
