@@ -59,13 +59,13 @@
         <div class="form-group">
 
             <label for="repassword">re-Enter Password</label>
-            <input [ngClass]="{ 'is-invalid' : repassword.errors && (repassword.dirty || repassword.touched),
-            'is-valid' : repassword.valid && (repassword.dirty || repassword.touched)
+            <input [ngClass]="{ 'is-invalid' : repassword.value !== password.value && ( repassword.dirty || repassword.touched) || repassword.errors && ( repassword.dirty || repassword.touched),
+            'is-valid' : repassword.valid && repassword.value === password.value && (repassword.dirty || repassword.touched)
            }"
                 id="repassword" name="repassword" placeholder="Confirm password" type="password" formControlName="repassword" class="form-control" />
             <div class="form-control-feedback invalid-feedback">
                 <div *ngIf="repassword.errors?.required">Please re enter your password</div>
-                <div *ngIf="password.value !== repassword.value">Passwords do not Match!</div>
+                <div *ngIf="repassword.value !== password.value">Passwords do not Match!</div>
             </div>
             <div class="form-control-feedback valid-feedback">looks good!</div>
         </div>
