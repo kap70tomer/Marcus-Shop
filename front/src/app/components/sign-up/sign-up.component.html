@@ -47,12 +47,12 @@
                              'is-valid' : password.valid && (password.dirty || password.touched)
                             }"
                 name="password" type="password" formControlName="password" class="form-control" />
+            <div class="form-control-feedback valid-feedback">looks good!</div>
             <div class="form-control-feedback invalid-feedback">
                 <div *ngIf="password.errors?.required">Password is required</div>
                 <div *ngIf="password.errors?.minlength">Password must be at least 8 you have now {{password.errors?.minlength.actualLength | json}}</div>
                 <div *ngIf="password.errors?.maxlength">Password must have less then 16 characters. you have {{password.errors?.maxlength.actualLength | json}} allready!</div>
             </div>
-            <div class="form-control-feedback valid-feedback">looks good!</div>
             
         </div>
 
@@ -60,14 +60,15 @@
 
             <label for="repassword">re-Enter Password</label>
             <input [ngClass]="{ 'is-invalid' : repassword.value !== password.value && ( repassword.dirty || repassword.touched) || repassword.errors && ( repassword.dirty || repassword.touched),
-            'is-valid' : repassword.valid && repassword.value === password.value && (repassword.dirty || repassword.touched)
-           }"
-                id="repassword" name="repassword" placeholder="Confirm password" type="password" formControlName="repassword" class="form-control" />
+                                'is-valid' : repassword.valid && repassword.value === password.value && (repassword.dirty || repassword.touched)
+                            }"
+                    id="repassword" name="repassword" placeholder="Confirm password" type="password" formControlName="repassword" class="form-control"
+                     />
+            <div class="form-control-feedback valid-feedback">looks good!</div>
             <div class="form-control-feedback invalid-feedback">
                 <div *ngIf="repassword.errors?.required">Please re enter your password</div>
                 <div *ngIf="repassword.value !== password.value">Passwords do not Match!</div>
             </div>
-            <div class="form-control-feedback valid-feedback">looks good!</div>
         </div>
 
         <i>This is a two parts form, COMPLETE THIS PART TO CONTINUE</i>
@@ -80,15 +81,16 @@
 
 <div *ngIf="!registerForm.valid" class="signUp2 card">
     
-    <form id="registerForm2" class="needs-validation card-body" name="registerForm2" [formGroup]="registerForm2"
-        (ngSubmit)="onSubmit()">
+    <form id="registerForm2" class="needs-validation card-body" name="registerForm2" [formGroup]="registerForm2" (ngSubmit)="onSubmit()">
 
         <div class="form-group">
-
             <label for="last_name">Last Name</label>
-            <input [ngClass]="last_name.errors && (last_name.dirty || last_name.touched) ? 'is-invalid':''"
-                class="form-control" type="text" formControlName="last_name" />
-
+            <input [ngClass]="{ 'is-invalid' : last_name.errors && ( last_name.dirty || last_name.touched),
+                                'is-valid' : last_name.valid && ( last_name.dirty || last_name.touched )
+                            }"
+                class="form-control" type="text" formControlName="last_name" 
+                />
+            <div class="form-control-feedback valid-feedback">looks good!</div>
             <div class="form-control-feedback invalid-feedback">
                 <div *ngIf="last_name.errors?.required">Last Name is required</div>
                 <div *ngIf="last_name.errors?.pattern">First letter must be Capital</div>
@@ -97,7 +99,10 @@
 
         <div class="form-group">
             <label for="city">City</label>
-            <select [ngClass]="city.errors && (city.dirty || city.touched) ? 'is-invalid':''" id="city" name="city"
+            <select [ngClass]="{ 'is-invalid' : city.errors && ( city.dirty || city.touched),
+                                 'is-valid' : city.valid && ( city.dirty || city.touched )
+                            }"
+                id="city" name="city"
                 formControlName="city" class="form-control">
                 <option value="">Where are you from?..</option>
                 <option>JARUSALEM</option>
@@ -111,6 +116,7 @@
                 <option>RANANA</option>
                 <option>ASHDOD</option>
             </select>
+            <div class="form-control-feedback valid-feedback"></div>
             <div class="form-control-feedback invalid-feedback">
                 <div *ngIf="city.errors?.required"> i need to know your City of living</div>
             </div>
@@ -118,8 +124,11 @@
 
         <div class="form-group">
             <label for="street">Street</label>
-            <input [ngClass]="street.errors && (street.dirty || street.touched) ? 'is-invalid':''" id="street"
-                name="street" type="text" formControlName="street" class="form-control" />
+            <input [ngClass]="{ 'is-invalid' : city.errors && ( city.dirty || city.touched),
+                                'is-valid' : city.valid && ( city.dirty || city.touched )
+                            }"
+                id="street" name="street" type="text" formControlName="street" class="form-control" />
+            <div class="form-control-feedback valid-feedback"> Looks good.</div>
             <div class="form-control-feedback invalid-feedback">
                 <div *ngIf="street.errors?.required">Street Address is required</div>
             </div>
