@@ -26,11 +26,10 @@ form>#loginButton{
     color:rgb(243, 161, 8);
     font-size: large;
     background-color: rgba(133, 4, 138, 0.973);
-    /* width: 25%; */
+
 }
 form>a>#signUpButton{
     background-color: rgb(102, 9, 156);
     color: rgb(171, 223, 49);
     font-size: large;
-    /* width: 25%; */
 }
