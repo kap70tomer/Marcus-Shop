@@ -55,7 +55,7 @@ export class SignUpComponent implements OnInit{
         this.repassword = new FormControl("", [Validators.required]);
         this.city = new FormControl("", Validators.required);
         this.street= new FormControl("", Validators.required);
-        this.last_name = new FormControl("", [Validators.required, Validators.pattern(/^[A-Z][-'a-zA-Z]+$/)]);
+        this.last_name = new FormControl("", Validators.required);
     
     }
 
