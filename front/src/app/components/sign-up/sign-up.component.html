@@ -71,7 +71,7 @@
             </div>
         </div>
 
-        <i>This is a two parts form, COMPLETE THIS PART TO CONTINUE</i>
+        <i *ngIf="registerForm.invalid || repassword.value !== password.value">This is a two parts form, COMPLETE THIS PART TO CONTINUE</i>
 
     </form>
 
@@ -79,7 +79,7 @@
 </div>
 
 
-<div *ngIf="registerForm.valid" class="signUp2 card">
+<div *ngIf="registerForm.valid && repassword.value === password.value" class="signUp2 card">
     
     <form id="registerForm2" class="needs-validation card-body" name="registerForm2" [formGroup]="registerForm2" (ngSubmit)="onSubmit()">
 
@@ -93,7 +93,6 @@
             <div class="form-control-feedback valid-feedback">looks good!</div>
             <div class="form-control-feedback invalid-feedback">
                 <div *ngIf="last_name.errors?.required">Last Name is required</div>
-                <div *ngIf="last_name.errors?.pattern">First letter must be Capital</div>
             </div>
         </div>
 
@@ -124,8 +123,8 @@
 
         <div class="form-group">
             <label for="street">Street</label>
-            <input [ngClass]="{ 'is-invalid' : city.errors && ( city.dirty || city.touched),
-                                'is-valid' : city.valid && ( city.dirty || city.touched )
+            <input [ngClass]="{ 'is-invalid' : street.errors && ( street.dirty || street.touched),
+                                'is-valid' : street.valid && ( street.dirty || street.touched )
                             }"
                 id="street" name="street" type="text" formControlName="street" class="form-control" />
             <div class="form-control-feedback valid-feedback"> Looks good.</div>
