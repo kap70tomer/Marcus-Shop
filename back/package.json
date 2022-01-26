@@ -1,11 +1,15 @@
 {
   "name": "back",
   "version": "1.0.0",
-  "description": "Shopping Web REST server, with CRUD capabiltys controlled by HTTP requets from client side, built using Express middleware tech ",
+  "description": "Shopping back-end RESTful server",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "dev":"concurrently \"npm run server\" \"npm run client\" ",
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client-install": "npm install --prefix ../front",
+    "client": "npm start --prefix ../front"
   },
   "author": "Tomer Schwartz",
   "license": "ISC",
@@ -18,5 +22,9 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "uuid": "^7.0.3"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
   }
 }
