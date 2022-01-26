@@ -1,15 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 /* You can add global styles to this file, and also import other style files */
 html, body{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     height: 100%;
     width: 100%;
-    min-width: 340px;
+    min-width: 420px;
     margin: 0;
     padding: 0;
 }
+
 select:hover{
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
@@ -19,6 +21,15 @@ input:hover{
 button{
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-body {
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+body * {
+    transition: 0.3s;
+}
+.main-text{
+    font-family: fantasy;
+    font-size: 24px;
+    color: rgba(150, 150, 150, 0.763);
+}
+.secondery-text{
+    font-family: monospace;
+    font-size: 16px;
 }
