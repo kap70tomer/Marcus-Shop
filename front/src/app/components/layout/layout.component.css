@@ -1,18 +1,20 @@
-section {
-    border: 0.1px solid black;
+.layout {
     height: 100%;
     text-align: center;
     box-sizing: border-box;
     display: grid;
-    /* grid-template-columns: repeat(12, 1fr); 12 columns */
     grid-template-rows: 60px auto 30px; /*3 rows*/
 }
 
-section > * {
-    border: 0.1px solid black;
-    background-color: rgb(215, 247, 230);
+.main{
+    width: 100%;
+    background-color: rgb(233, 227, 227);
 }
-footer{
-    position: sticky;
-    bottom: 0;
+.header{
+    background: rgb(74,74,73);
+    background: linear-gradient(0deg, rgba(74,74,73,1) 10%, rgba(255,0,0,1) 50%, rgba(35,31,32,1) 90%);
+}
+.footer{
+    background: rgb(74,74,73);
+    background: linear-gradient(0deg, rgba(74,74,73,1) 10%, rgba(255,0,0,1) 50%, rgba(35,31,32,1) 90%);
 }

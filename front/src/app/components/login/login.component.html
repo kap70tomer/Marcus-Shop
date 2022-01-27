@@ -1,37 +1,37 @@
-<div *ngIf="!isLoggedIn" class="container col-12">
+<div *ngIf="!isLoggedIn" class="container">
   
     <form [formGroup]="loginForm" (submit)="login()">
-        <h2>Welcome Guest!</h2>
+        <p class="main-text">Welcome Guest!</p>
         <!-- <input type="text" placeholder="User name" name="username" [formControl]="userName"><br> -->
         <input 
         [ngClass]="email.errors && (email.dirty || email.touched) ? 'is-invalid':''"
-        type="text" placeholder="Email" [formControl]="email"><span class="glyphicon glyphicon-envelope"></span>
+        type="text" placeholder="Email@googlygoo.net" [formControl]="email"><span class="glyphicon glyphicon-envelope"></span>
         <br>
-        <span class="invalid-feedback" *ngIf="email.errors?.required && email.touched"> Email is required!</span>
-        <span class="invalid-feedback" *ngIf="email.errors?.pattern && email.touched">invalid Email!</span>
+        <span class="invalid-feedback secondery-text" *ngIf="email.errors?.required && email.touched"> Email is required!</span>
+        <span class="invalid-feedback secondery-text" *ngIf="email.errors?.pattern && email.touched">invalid Email!</span>
         <br>
 
         <input
-        [ngClass]="password.errors && (password.dirty || password.touched) ? 'is-invalid':''"
-        
-        type="password" placeholder="Password" name="password" [formControl]="password">
+            [ngClass]="password.errors && (password.dirty || password.touched) ? 'is-invalid':''"
+            type="password" placeholder="Password" name="password" [formControl]="password">
         <span class="glyphicon glyphicon-lock"></span>
 
-        <br>
-        <span *ngIf="password.invalid && password.touched" class="invalid-feedback">Missing password!</span>       
-        <br>
-        <input [disabled]="loginForm.invalid" type="submit" id="loginButton" value="Login">
         
-        <a href="/signup">
-        <input class="col-12" type="button" id="signUpButton" value="Sign up">
-        </a>
+        <br>
+        <span *ngIf="password.invalid && password.touched" class="invalid-feedback secondery-text">Missing password!</span>       
+        <br>
+        <input [disabled]="loginForm.invalid" class="secondery-text" type="submit" id="loginButton" value="Login">
+        <p class="secondery-text">-or-</p> 
+        
+        <input class="secondery-text" type="button" id="signUpButton" value="Sign up" routerLink ="/signup">
+        <p class="secondery-text">for free!</p> 
     </form>
 </div>
-<div *ngIf="isLoggedIn">
+<form *ngIf="isLoggedIn">
     <h3>Welcome to my humble Shop!</h3>
-    <button type="button" class="btn btn-danger btn-lg btn-block" (click)="startNew()">Start Shopping</button>
-    <p>*start takes new Cart</p>
-    <button *ngIf="this.usersService.user_type =='ADMIN'" type="button" class="btn btn-warning btn-lg btn-block" routerLink="/admin">Admin Panel</button>
+    <input type="button" id="startButton" class="main-text" (click)="startNew()" value="Start Shopping">
+    <p class="secondery-text">You can leave any time and  <br>continue from where you left off.</p>
+    <input *ngIf="this.usersService.user_type=='ADMIN'" type="button" class="main-text" routerLink="/admin" value="Admin Dashbord">
     <br>
-    <button type="button" class="btn btn-danger" (click)="logOut()">LogOut</button>
-</div>
+    <input type="button" id="logoutButton" class="secondery-text" (click)="logOut()" value ="Logout">
+</form>

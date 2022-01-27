@@ -2,19 +2,20 @@ button{
     margin: 2%;
 }
 .shopNotifications{
-    margin-top: 5px;
     color: darkorange;
-    width: 100%;
-
+    padding: 9%;
 }
 #lastTimes{
-    background-color: rgba(77, 230, 222, 0.336);
-    color: yellow;
-    
-    margin: 5px;
-    text-decoration-line:underline;
+    background-color: rgba(0, 0, 0, 0.119);
+    color: yellow;    
+    margin: 15px;
 }
 
 i{
     color: darkviolet;
+}
+
+.notifications-banner{
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    width: 95%;
 }

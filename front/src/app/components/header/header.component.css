@@ -1,16 +1,18 @@
+
 img{
-    position:sticky;
-    float: left;    
-    width: 56px;
+    position: sticky;
+    float: left;
+    width: 54px;
+    margin: 0.5px;
+    margin-left: 5px;
+    cursor: pointer;
 }
 .contact{
     float: right;
-    color: darkslategray;
-    height: 4rem;
+    color: rgb(234, 234, 234);
     font-family: fantasy;
+    margin: 5px;   
 }
 p{
-    
-    font-family: cursive;
     float:right
 }
