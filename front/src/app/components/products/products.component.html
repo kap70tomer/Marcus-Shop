@@ -3,9 +3,9 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li>
-        <div class="input-group mb-3">
+        <div class="input-group">
           <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Category</label>
+            <label class="input-group-text secondery-text" for="inputGroupSelect01">Category</label>
           </div>
           <select class="custom-select" [(ngModel)]='categoryId' id="inputGroupSelect01">
             <option selected value="">All</option>
@@ -15,7 +15,7 @@
       </li>
     </ul>
     <!-- <li class="active"><a href="#">Home</a></li> -->
-    <input type="text" id="searchProduct" class="form-control" [(ngModel)]="text" placeholder="Search Products By Name">
+    <input type="text" id="searchProductInput" class="form-control" [(ngModel)]="text" placeholder="Search By Name">
   </div>
 </nav>
 
@@ -26,8 +26,8 @@
   <div class='card-title'>
     <img src="http://localhost:3000/{{product.picture}}">
   </div>
-  <div class="card-body">
-    <h4 class="text-capitalize">{{product.name}} </h4>
+  <div class="card-body secondery-text">
+    <h4 class="text-capitalize ">{{product.name}} </h4>
     {{product.price}}$
   </div>
 </div>

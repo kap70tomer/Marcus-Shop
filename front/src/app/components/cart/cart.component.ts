@@ -25,29 +25,29 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   
   ngOnInit(): void {
-  
-    
-    if (!this.cart_id) {
+    // check if cartService has ID for this session, load carts items or insert new cart?.
+    if(!this.cart_id) {
       let observable = this.cartService.insertCart();
       observable.subscribe(data => {
         console.log(data);
         this.shoppingCart.cart_id = data;
-        this.cart_id = this.shoppingCart.cart_id;
+        this.cart_id = data;
         this.cartItemService.id = data;
         this.cartItemService.refresh_needed.next();
       }, 
       errorResponse => {
-        console.log(errorResponse);
+        console.log("[DBG] Cart service action got Error response: " + errorResponse);
       });
     };
 
-    this.cartItems = this.shoppingCart.cart_items.subscribe(itemsList => 
-      { this.cart_items = itemsList }),
-     error=>{
-         console.log(error);
-    };
-    
-    this.cartItems = this.cartItemService.refresh_needed.subscribe(() => {
+    this.cartItems = this.shoppingCart.cart_items.subscribe(
+      itemsList => {
+        this.cart_items = itemsList 
+      }),
+      error=>{
+        console.log("[DBG]Shopping cart service failed, retriving cart's items list got error: " + error);
+      };
+      this.cartItems = this.cartItemService.refresh_needed.subscribe(() => {
       this.loadCartItems();
     });
     this.loadCartItems();
@@ -74,7 +74,7 @@ export class CartComponent implements OnInit, OnDestroy {
   };
   
   public loadCartItems() {
-    let cartItemsObservable = this.cartItemService.getAllCartItems();
+    let cartItemsObservable = this.cartItemService.getAllCartItems(this.cart_id);
     cartItemsObservable.subscribe(itemsList => {
       this.shoppingCart.setCartItems(itemsList);
       console.log(itemsList);
@@ -122,10 +122,10 @@ export class CartComponent implements OnInit, OnDestroy {
     let deleteOb = this.cartService.clearCart();
     deleteOb.subscribe(data => {
       
-      this.shoppingCart.setTotal(0);
+      console.log("clear cart"+ data);
       this.cartItemService.refresh_needed.next();
+      // this.shoppingCart.setTotal(0);
       location.reload();
-      console.log(data);
     }, error => {
       console.log(error)
     });
@@ -134,11 +134,11 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.shoppingCart.cart_items.unsubscribe;
     
-    if (!this.cart_items.length) {
-      console.log("cart is lost ");
+    if (this.cart_items.length === 0) {
       this.cartService.deleteCart()
-        .subscribe(data => {
-          this.shoppingCart.cart_id = null;
+      .subscribe(data => {
+        this.shoppingCart.cart_id = null;
+        console.log("cart is deleted !");
           console.log(data);
         }, error => {
           console.log(error)

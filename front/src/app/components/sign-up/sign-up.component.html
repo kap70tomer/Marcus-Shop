@@ -1,9 +1,9 @@
-<div class="signUp1" class="card">
+<div class="signUp1" class="card-body container">
 
     <!-- <p>-[DBG]- {{ registerForm.value | json }}</p> -->
-    <h3 class="signup-form-header card-header">Sign Up Form</h3>
+    <p class="signup-form-header main-text">Sign Up Form</p>
 
-    <form class="needs-validation card-body" name="registerForm" [formGroup]="registerForm">
+    <form class="needs-validation secondery-text " name="registerForm" [formGroup]="registerForm">
 
         <div class="form-group">
             <label for="first_name">First Name</label>
@@ -66,7 +66,7 @@
                      />
             <div class="form-control-feedback valid-feedback">looks good!</div>
             <div class="form-control-feedback invalid-feedback">
-                <div *ngIf="repassword.errors?.required">Confirm password</div>
+                <div *ngIf="repassword.errors?.required">Confirm password is required</div>
                 <div *ngIf="repassword.value !== password.value">Passwords do not Match!</div>
             </div>
         </div>
@@ -79,9 +79,9 @@
 </div>
 
 
-<div *ngIf="registerForm.valid && repassword.value === password.value" class="signUp2 card">
+<div *ngIf="registerForm.valid && repassword.value === password.value" class="signUp2">
     
-    <form id="registerForm2" class="needs-validation card-body" name="registerForm2" [formGroup]="registerForm2" (ngSubmit)="onSubmit()">
+    <form id="registerForm2" class="needs-validation" name="registerForm2" [formGroup]="registerForm2" (ngSubmit)="onSubmit()">
 
         <div class="form-group">
             <label for="last_name">Last Name</label>
@@ -133,14 +133,8 @@
             </div>
         </div>
 
-        <button [disabled]="registerForm.invalid || registerForm2.invalid" type="button" class="btn btn-primary"
-            (click)="onSubmit()">
-            Finish
-        </button>
-
+        <input  [disabled]="registerForm.invalid || registerForm2.invalid" 
+            type="button" class="main-text" id="finishButton" (click)="onSubmit()" value="Finish">
     </form>
 </div>
-<hr>
-
-<a routerLink="/" class="btn btn-link">Cancel</a>
-<br>    
+<input routerLink="/" class="btn btn-link secondery-text" id="cancelButton" value="Cancel">

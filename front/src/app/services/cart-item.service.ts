@@ -49,8 +49,8 @@ export class CartItemService {
         this.refresh_needed.next})
         )
   }
-  public getAllCartItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(`/api/items/`+ this.shoppingCart.cart_id);
+  public getAllCartItems(cart_id): Observable<Item[]> {
+    return this.http.get<Item[]>(`/api/items/`+ cart_id);
   }
 
 }

@@ -1,4 +1,57 @@
 .form-group{
-    max-width: 550px;
+    margin: 10px auto;
+    max-width: 650px;
+}
+form{
     margin: auto;
+    font-size: larger;
+    padding: 10px; 
+}
+.form-group > input {
+    width: 80%;
+    font-size: large;
+    height: 25px;
+    margin: 10px auto;
+    padding: 10px;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 10px;
+    background-color: rgb(148, 148, 148);
+    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+#startButton{
+    background-color: rgb(255, 0, 0);
+}
+
+#startButton:hover{
+    color: rgb(255, 0, 0);
+    background-color: #ffffff; 
+}
+
+#cancelButton{
+    border-radius: 5px;
+    margin: 5%;
+    color:rgb(243, 161, 8);
+    background-color: rgba(133, 4, 138, 0.973);
+}
+#cancelButton:hover{
+    border-color: rgb(255, 153, 0);  
+    background-color:rgb(243, 161, 8);
+    color:rgba(133, 4, 138);
+    font-weight: 700;
+}
+#finishButton{
+    width: 80%;
+    border-radius: 5px;
+    background-color: rgb(102, 9, 156);
+    color: rgb(171, 223, 49);
+}
+#finishButton:hover{
+    border-color: rgb(166, 222, 56);
+    background-color: rgb(171, 223, 49);
+    color: rgb(102, 9, 156);
+    font-weight: 700;
+}
+#finishButton:disabled{
+    opacity: 0.4;
 }

@@ -26,9 +26,9 @@
             </td>
         </tr>
         <tr>
-           <td> <button class="btn btn-danger" routerLink="/checkout"> Checkout<span class="glyphicon glyphicon-shopping-cart">     </span></button></td>
-             <td>Total:{{this.cost||0||this.shoppingCart.total_price.value}}$</td>
-            <td><button (click)="clearCart()" class="btn btn-danger">Clear<span class="glyphicon glyphicon-trash"></span></button></td>
+           <td> <button class="btn btn-danger main-text" routerLink="/checkout"> Checkout<span class="glyphicon glyphicon-shopping-cart">     </span></button></td>
+             <td class="secondery-text"> Total:{{this.cost||0||this.shoppingCart.total_price.value}}$</td>
+            <td><button (click)="clearCart()" class="btn btn-danger main-text">Clear<span class="glyphicon glyphicon-trash"></span></button></td>
         </tr>
         </tbody>
     </table>

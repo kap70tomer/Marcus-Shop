@@ -2,7 +2,7 @@
     <div class="shop-cart" *ngIf="isShowCart">
         <app-cart></app-cart>
     </div>
-    <div class="shop-main">    
+    <div class="shop-main container-fluid">    
         <label class="switch">
             <input  id="cartToggler" type="checkbox" [checked]="isShowCart" (change)="isShowCart=! isShowCart">
             <span class="slider round"></span>

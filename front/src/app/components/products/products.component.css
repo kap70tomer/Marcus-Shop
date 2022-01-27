@@ -22,20 +22,22 @@ img{
   width: 200px;
 }
 
-#searchProduct{
+#searchProductInput{
   float: left;
   width: 200px;
+  height: 25px;
+  margin-top: 5px;
   opacity: 70%;
 }
-#searchProduct:focus{
+#searchProductInput:focus{
   opacity: 100%;
   background-color: lightyellow;
   color: rgb(174, 17, 206);
 }
 
 #cardsContainer{
-  overflow: auto;
-  height: 96%;
+  
+  position: relative;
 }
 
 .card {
@@ -43,9 +45,6 @@ img{
   display: inline-block;
   margin: 2%;
   text-align: center;
-  height: 13rem;
-  width: 10rem;
-  font-family: arial;
   transition: all .2s ease-in-out; 
 }
 
@@ -53,12 +52,11 @@ img{
   transform: scale(1.15); 
 }
 .card-body{
-  padding: 0.25rem;
+  padding: 10px;
 }
 
 input,button {
   width: 80%;
-  font-size: medium;
   margin: 0; 
   padding : 5px;
   /* Round corners button */ 
@@ -75,8 +73,6 @@ nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    /* overflow: hidden; */
-    background-color: rgb(139, 241, 119);
   }
 nav button{
   color:darkgray;

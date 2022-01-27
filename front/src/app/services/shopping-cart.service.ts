@@ -16,7 +16,7 @@ export class ShoppingCartService implements Cart {
 
  
   constructor() {  
-  this.cart_id=0;
+  this.cart_id;
   this.total_price = new BehaviorSubject<number>(0);
   this.cart_items = new BehaviorSubject<Item[]>([]);
   }
