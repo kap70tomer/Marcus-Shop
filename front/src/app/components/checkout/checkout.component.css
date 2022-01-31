@@ -1,5 +1,50 @@
-body{
-    overflow-x :hidden;
-    min-width: 10%;
-    max-width: 30%;;
+.checkout-wrapper{
+    margin: 15px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* align-content: center; */
+    justify-content: center;
+}
+form{
+    margin: auto;
+    padding: 10px; 
+}
+label{
+    font-family: monospace;
+    font-size: 16px;
+    margin: 10px;
+}
+input, select {
+    width: 80%;
+    max-width: 280px;
+    margin: auto;
+    text-align: center;
+    color: #373737;
+    border-radius: 10px;
+    background-color: rgb(237, 237, 237);
+    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+#backButton{
+    border-radius: 5px;
+    color:rgb(243, 161, 8);
+    background-color: rgba(133, 4, 138, 0.973);
+}
+#backButton:hover{
+    border-color: rgb(247, 164, 41);  
+    background-color:rgb(243, 161, 8);
+    color:rgba(133, 4, 138);
+    font-weight: 700;
+}
+#checkoutButton{
+    border-radius: 5px;
+    background-color: rgb(102, 9, 156);
+    color: rgb(171, 223, 49);
+}
+#checkoutButton:hover{
+    border-color: rgb(166, 222, 56);
+    background-color: rgb(171, 223, 49);
+    color: rgb(102, 9, 156);
+    font-weight: 700;
 }

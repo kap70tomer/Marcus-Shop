@@ -1,41 +1,44 @@
-<nav class="navbar navbar-inverse">
+<div class="products-wrapper"> 
 
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-      <li>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <label class="input-group-text secondery-text" for="inputGroupSelect01">Category</label>
-          </div>
-          <select class="custom-select" [(ngModel)]='categoryId' id="inputGroupSelect01">
-            <option selected value="">All</option>
-            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+  <nav class="navbar navbar-inverse">
+    
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text secondery-text" for="inputGroupSelect01">Category</label>
+            </div>
+            <select class="custom-select" [(ngModel)]='categoryId' id="inputGroupSelect01">
+              <option selected value="">All</option>
+              <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
             </select>
-        </div>
-      </li>
-    </ul>
-    <!-- <li class="active"><a href="#">Home</a></li> -->
-    <input type="text" id="searchProductInput" class="form-control" [(ngModel)]="text" placeholder="Search By Name">
-  </div>
-</nav>
-
-
-<div id="cardsContainer" *ngIf="isShowAll">
-  <div *ngFor="let product of products| categoryPipe: categoryId | nameFilterPipe:text" class="card"
+          </div>
+        </li>
+      </ul>
+      <!-- <li class="active"><a href="#">Home</a></li> -->
+      <input type="text" id="searchProductInput" class="form-control" [(ngModel)]="text" placeholder="Search By Name">
+    </div>
+  </nav>
+  
+  
+  <div id="cardsContainer" *ngIf="isShowAll">
+    <div *ngFor="let product of products| categoryPipe: categoryId | nameFilterPipe:text" class="card"
     (click)=[(showDetailed(product))] data-toggle="modal" data-target="#myModal">
-  <div class='card-title'>
-    <img src="http://localhost:3000/{{product.picture}}">
-  </div>
-  <div class="card-body secondery-text">
-    <h4 class="text-capitalize ">{{product.name}} </h4>
-    {{product.price}}$
+    <div class='card-title'>
+      <img src="http://localhost:3000/{{product.picture}}">
+    </div>
+    <div class="card-body secondery-text">
+      <h4 class="text-capitalize ">{{product.name}} </h4>
+      {{product.price}}$
+    </div>
   </div>
 </div>
 </div>
 
 <div class="modal" id="myModal" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog col-10">
-
+    
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -49,7 +52,7 @@
         
         Price : {{currentProduct.price * quantity}} (USD)
         <button type="button" class="btn btn-primary" (click)="addToCart(currentProduct)">Add To Cart</button>
-        
+        <hr>
         <button type="button" class="btn btn-secondary" (click)="showToggle()" data-dismiss="modal">Close</button>
       </div>
       

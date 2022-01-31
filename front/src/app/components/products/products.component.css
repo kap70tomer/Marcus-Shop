@@ -1,20 +1,17 @@
-#content{
-  /* position: relative; */
-  flex-wrap: wrap;
-  height: 100%;
-  /* display: inline-block; */
-}
+
 img{
   height: 100px;
+  margin: 2px;
   width: 100px;
 }
 .modal-body{
-  width: 80%;
-  /* height: 29rem; */
+ 
+ 
 }
 .modal-body> img{
  width: 200px;
  height: 200px;
+ margin: 4px;
 }
 
 .form-control{
@@ -34,16 +31,20 @@ img{
   background-color: lightyellow;
   color: rgb(174, 17, 206);
 }
+.products-wrapper{
+  height: 100%;
+ 
+}
 
-#cardsContainer{
-  
-  position: relative;
+#cardsContainer{  
+  /* overflow: auto; */
 }
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
   display: inline-block;
-  margin: 2%;
+  width: 150px;
+  margin: 10px;
   text-align: center;
   transition: all .2s ease-in-out; 
 }

@@ -50,7 +50,7 @@ export class CartItemService {
         )
   }
   public getAllCartItems(cart_id): Observable<Item[]> {
-    return this.http.get<Item[]>(`/api/items/`+ cart_id);
+    return this.http.get<Item[]>(`/api/items/${cart_id}`);
   }
 
 }

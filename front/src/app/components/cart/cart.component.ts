@@ -74,6 +74,8 @@ export class CartComponent implements OnInit, OnDestroy {
   };
   
   public loadCartItems() {
+    if(!this.cart_id){ return }
+
     let cartItemsObservable = this.cartItemService.getAllCartItems(this.cart_id);
     cartItemsObservable.subscribe(itemsList => {
       this.shoppingCart.setCartItems(itemsList);

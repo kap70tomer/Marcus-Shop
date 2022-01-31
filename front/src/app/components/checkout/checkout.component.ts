@@ -16,21 +16,21 @@ import { UserService } from 'src/app/services/users.service';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  public text:string;
   public deliveryForm: FormGroup;
   public city: FormControl;
   public address: FormControl;
   public date: FormControl;
   public credit: FormControl;
   public total_price: number;
+  public text:string;
+  public searchTerm:string;
   public user_id: number;
   public cart_id: number;
+  
   public userInfo:User;
-
+  public order: Order;
   public item: Item;
   public cart_items: Item[] = [];
-  public searchTerm:string;
-  public order: Order
 
 
   constructor(public textFiles:TextFilesService, public userService:UserService, public shoppingCart: ShoppingCartService, private cartService: CartService, private cartItemService: CartItemService, private orderService: OrdersService) {
@@ -62,22 +62,25 @@ export class CheckoutComponent implements OnInit {
   
   ngOnInit(): void {
     
+    if(!this.cart_id){ return }
+
     let totalObservable = this.cartItemService.getTotalOrderSum(this.cart_id);
     console.log("checkout "+ this.cart_id +" "+ this.userService.id);
     totalObservable.subscribe(total => { this.total_price = total;
     },
-      error => { console.log(error)
+      error => { console.log("DBG totalObservable error: " + error.message)
       });
 
-    let cartObservable = this.cartItemService.getAllCartItems();
+    let cartObservable = this.cartItemService.getAllCartItems(this.cart_id);
     cartObservable.subscribe(itemsList => { this.cart_items = itemsList },
-      error => { console.log(error) 
+      error => { console.log("DBG cartItems Observable Error: "+error.message) 
       });
       
    
   };
 
   onSubmit() {
+    if(!this.cart_id){ return }
 
     this.order = {
       cart_id: this.shoppingCart.cart_id,
@@ -91,10 +94,9 @@ export class CheckoutComponent implements OnInit {
     let orderObservable = this.orderService.createOrder(this.order);
     orderObservable.subscribe(data => {
       console.log(data);
-      this.shoppingCart.cart_id = null;
     },error=>{
       alert("oops dont leave yet, order is not set: "+JSON.stringify(error.error.error));
-      console.log(error);
+      console.log(error.message);
     });
   }
 
