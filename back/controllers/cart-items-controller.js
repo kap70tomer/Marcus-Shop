@@ -9,7 +9,7 @@ router.post("/add", async (request, response, next) => {
     
     try {
         let insertItem = await logic.add(newItem);
-        console.log(insertItem)
+        console.log(insertItem);
         response.status(201).json(insertItem); // 201 - request has been fulfilled
     }
     catch (error) {
@@ -18,7 +18,7 @@ router.post("/add", async (request, response, next) => {
 });
 
 
-// Get by product id and cart id: 
+// Get by product id and: 
 router.get("/proId/:id", async (request, response, next) => {
     
     const id =+ request.params.id;

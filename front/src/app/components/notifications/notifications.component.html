@@ -1,15 +1,13 @@
 <div class="shopNotifications main-text">
     <p>#Orders: <i>{{this.amountOfOrders}}</i></p>
     <p>#Products: <i>{{this.amountOfProducts}}</i></p>
-    <pre></pre>
-    
-    <h3 *ngIf="isLoggedIn" class="secondery-text"> Welcome back {{this.userService.name || 'guest'}} !</h3>
+    <p *ngIf="isLoggedIn" class="secondery-text"> Welcome back {{this.userService.name || 'guest'}} !</p>
     <div *ngIf="isLoggedIn && !isNewUser" class="userNotifications">
         <div *ngIf="lastCarts">
             <i  class="text-warning">last Carts :</i>
-            <div *ngFor="let cart of lastCarts" id="lastTimes" class="card">
-                {{ cart.creation_date| date:'dd-MM HH:mm'}}  {{cart.total}}
-                <button *ngIf="!cart.isChecked" class="secondery-text" (click)="resumeShopping(cart.id)" routerLink="/shop">RESUME</button>
+            <div *ngFor="let cart of lastCarts" id="lastTimes" class="secondery-text card">
+                {{ cart.creation_date| date:'dd-MM HH:mm'}}  {{cart.total +'$'}}
+                <button *ngIf="!cart.isChecked" class="main-text" (click)="resumeShopping(cart.id)" routerLink="/shop">RESUME</button>
                 <span class="btn btn-success" *ngIf="cart.isChecked">PAYED</span>
             </div>
         </div>

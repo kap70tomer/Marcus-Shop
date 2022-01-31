@@ -30,9 +30,10 @@ async function update(cart){//Update cart status, by Id
 //get last users carts:
 async function retriveLastCartsByUser(id) {//retrive Last Carts.
     const sql = `SELECT id FROM shopping_cart 
-    where user_id =? order by isChecked, creation_date desc limit 3`;
+    where user_id =? order by creation_date desc limit 3`;
     let parameters = [id];
     const getAllResults = await connection.executeWithParams(sql, parameters);
+    console.log("[DBG] get last 3 carts by user id => ", getAllResults)
     return getAllResults;
 };
 

@@ -16,7 +16,9 @@ img{
 
 .form-control{
   float: right;
-  width: 200px;
+  width: 50px;
+  font-size: inherit;
+  margin-left: 80px;
 }
 
 #searchProductInput{
@@ -82,3 +84,26 @@ h4{
   margin: 0;
 }
  
+#backButton{
+  border-radius: 15px;
+  color:rgb(243, 161, 8);
+  background-color: rgba(133, 4, 138, 0.973);
+}
+#backButton:hover{
+  border-color: rgb(247, 164, 41);  
+  background-color:rgb(243, 161, 8);
+  color:rgba(133, 4, 138);
+  font-weight: 700;
+}
+
+#addButton{
+  border-radius: 25px;
+  background-color: rgb(102, 9, 156);
+  color: rgb(171, 223, 49);
+}
+#addButton:hover{
+  border-color: rgb(166, 222, 56);
+  background-color: rgb(171, 223, 49);
+  color: rgb(102, 9, 156);
+  font-weight: 700;
+}

@@ -1,14 +1,26 @@
 button{
     margin: 2%;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: rgb(255, 0, 0);
+}
+
+Button:hover{
+    color: rgb(255, 0, 0);
+    background-color: #ffffff;
+    
 }
 .shopNotifications{
     color: darkorange;
-    padding: 9%;
+    padding: 5px;
 }
 #lastTimes{
     background-color: rgba(0, 0, 0, 0.119);
     color: yellow;    
-    margin: 15px;
+    margin: 5px auto;
+    width: 75%;
+    
 }
 
 i{
@@ -17,5 +29,5 @@ i{
 
 .notifications-banner{
     box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    width: 95%;
+    width: 80%;
 }

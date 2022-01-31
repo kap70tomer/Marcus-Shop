@@ -1,6 +1,8 @@
 let errorHandler = (e, request, response, next) => {
     // e = my Server error --> IT HAS AN ENUM INSIDE (!!) called errorType
-    if (e.errorType.isShowStackTrace){
+    console.error("[DBG] ERRoR , ", e);
+    
+    if (e.errorType?.isShowStackTrace){
         console.error(e);
     }
 

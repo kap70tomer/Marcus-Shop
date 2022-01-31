@@ -1,29 +1,31 @@
-//Connection/Comunication through Module to BD server.                      
-let connection = require("./connection-wrapper");
+const connection = require("./connection-wrapper");
+// @@modul import - cennetion to DB server (through Promises).
 
-//Get price by product id.
+//Get cart item price, by product id.
 async function retriveItemPriceBy(id){
-
-    const sql = "select price from products where id = ?";
-    const parameters = [ id ];
-   //set quary to exe 
+    // use SQL query with question mark to prevent dangerous injections attempts.
+    const sql = "SELECT price from products where id = ?";
+    const parameters = [ id ]; // Query paramether (product id), replace '?' on execution. 
+    
+    // Promise (from connection module) execute SELECT query with the given product id to retrive its data from SQL DB server.
     const getPriceResult = await connection.executeWithParams(sql,parameters);
-    //commit exe of quary with params
-    console.log(getPriceResult[0].price)
+    
+    console.log('[DBG] Product price => '+ getPriceResult[0].price);
     return getPriceResult[0].price;
+    // @@return NUMBER the product's price.
 }
 
-//CALC TOTAL CART PRICE, by cart id:
+//@@ Calc TOTAL CART PRICE, by cart id:
 async function calcTotalPriceOfCart(id){
-//quantity * product price = total item price. for validation.
+// Product price(trusted) * quantity (of product in cart as cart_item) = cart item total price.
    const sql = `SELECT sum(products.price * cart_items.quantity) as total_price 
    FROM products join cart_items on products.id = cart_items.product_id 
-   where cart_id =?`;
-   
+   where cart_id = ?`;
    const parameters = [ id ]; 
+   
    const getTotalPriceResult = await connection.executeWithParams(sql, parameters);
    
-   console.log(getTotalPriceResult[0].total_price);
+   console.log("[DBG] Total price by CARD ID => "+getTotalPriceResult[0].total_price);
    return getTotalPriceResult[0].total_price;
 };
 
@@ -47,7 +49,7 @@ async function update(item){
     return info;
 };
 
-//Get Cart's Cart_Items, by Cart id:
+//Get Cart's Items, by Cart id:
 async function retriveByCart(id) { 
     
     const sql = "SELECT cart_items.*, products.name FROM shopping.cart_items join shopping.products "+

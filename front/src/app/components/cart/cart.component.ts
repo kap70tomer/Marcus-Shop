@@ -36,7 +36,7 @@ export class CartComponent implements OnInit, OnDestroy {
         this.cartItemService.refresh_needed.next();
       }, 
       errorResponse => {
-        console.log("[DBG] Cart service action got Error response: " + errorResponse);
+        console.log("[DBG] Cart service action got Error response: ", errorResponse);
       });
     };
 

@@ -11,8 +11,9 @@ class Cart {
 
     static validate(cartToValidate) {
         const validationSchema = {
-            
-            user_id: joi.number().required()
+            id: joi.required(),
+            user_id: joi.number().required(),
+            isChecked: joi.required(),
         };
 
         const error = joi.validate(cartToValidate, validationSchema, { abortEarly: false }).error;

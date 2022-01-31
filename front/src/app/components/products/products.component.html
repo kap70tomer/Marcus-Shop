@@ -37,23 +37,23 @@
 </div>
 
 <div class="modal" id="myModal" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog col-10">
+  <div class="modal-dialog">
     
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">
-          How many {{currentProduct.name}} would you like to Buy?
+          How many {{currentProduct.name}} would you like to Buy? <input class="main-text form-control" type="number" min="1" value="1" [(ngModel)]="quantity">
         </h4>
       </div>
       <div class="modal-body">
         <img *ngIf="currentProduct.picture" src="http://localhost:3000/{{currentProduct.picture}}">
-        <input class="form-control" type="number" min="1" value="1" [(ngModel)]="quantity">
+       
         
-        Price : {{currentProduct.price * quantity}} (USD)
-        <button type="button" class="btn btn-primary" (click)="addToCart(currentProduct)">Add To Cart</button>
+        <button type="button" id="addButton" class="main-text" (click)="addToCart(currentProduct)"> Add to Cart {{currentProduct.price * quantity}}$</button>
         <hr>
-        <button type="button" class="btn btn-secondary" (click)="showToggle()" data-dismiss="modal">Close</button>
+
+        <button type="button" id="backButton" class="secondery-text" (click)="showToggle()" data-dismiss="modal">Back to store</button>
       </div>
       
     </div>

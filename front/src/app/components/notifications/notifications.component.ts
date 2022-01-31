@@ -75,21 +75,22 @@ export class NotificationsComponent implements OnInit {
         })
       }
 
-    // let isNew = sessionStorage.getItem("isNewUser");
-    // if(isNew == "true") {
-    //   this.isNewUser = true;
-    //   return;
-    // }
-    // let isLogged = sessionStorage.getItem("isLoggedIn");
-    // if(isLogged == "true") {
-    //   this.isLoggedIn = true;
-    //   return;
-    // }  
+    let isNew = sessionStorage.getItem("isNewUser");
+    if(isNew == "true") {
+      this.isNewUser = true;
+      return;
+    }
+    let isLogged = sessionStorage.getItem("isLoggedIn");
+    if(isLogged == "true") {
+      this.isLoggedIn = true;
+      return;
+    }  
   
 }
   
- resumeShopping(cart_id:number){
-   this.shoppingCartService.cart_id = cart_id;
-  //  localStorage.setItem("cart_id",JSON.stringify(cart_id));
+resumeShopping(cart_id:number){
+
+  this.shoppingCartService.cart_id = cart_id;
+  //localStorage.setItem("cart_id",JSON.stringify(cart_id));
   }
 }

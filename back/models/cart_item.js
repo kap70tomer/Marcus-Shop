@@ -13,7 +13,7 @@ class CartItem {
     static validate(cartItemToValidate) {
         const validationSchema = {
             product_id: joi.number().required(),
-            name: joi.optional(),
+            name: joi.string().required(),
             quantity: joi.number().required(),
             total_price: joi.number().required(),
             cart_id: joi.number().required(),
