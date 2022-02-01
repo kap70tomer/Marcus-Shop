@@ -1,12 +1,9 @@
 
 section{
     display: grid;
-   
     grid-template-columns: repeat(12, 1fr);
-    height: 60rem;
     text-align: center;
 
- 
 }
 
 
@@ -18,33 +15,32 @@ main  {
 
 aside{
     grid-column: span 3;   
-    border: black solid 1px;
     height: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
 }
 #searchProduct{
     float: left;
-    margin:2%;
-    width: 80%;
+    margin: 5px;
+    width: 75%;
     opacity: 70%;
 }
 #searchProduct:focus{
     opacity: 100%;
     background-color: lightyellow;
     color: rgb(174, 17, 206);
+    width: 80%;
+    font-family: monospace;
 }
 #saveBtn{
     
-    margin: 2%;
+    margin: auto;
     width: 90%;
     color: white;
     background-color: rgb(245, 166, 21);
 }
 
 #cardsContainer{
-
     overflow: auto;
-    height: 60rem;
 }
 
 .card {
@@ -73,24 +69,28 @@ span:hover{
     background-color: greenyellow;
     border: grey;
     transform: scale(1.1); 
-
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
 }
-form, label{
-    float:left;
-    margin: 2%;
+form{
+    margin: 5%;
+}
+label{
+    float: left;
 }
 
-
 input,button {
-    width: 70%;
+    width: 80%;
     font-size: medium;
     margin: 5%; 
     padding : 5px;
+    text-align: center;
     /* Round corners button */ 
     border-radius: 20px;  
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);    
+}
+select{
+    margin: 10px;
 }
     
 input:hover{
