@@ -48,3 +48,10 @@ input, select {
     color: rgb(102, 9, 156);
     font-weight: 700;
 }
+.list-group-item, .card{
+    border: none;
+    background-color: transparent;
+}
+.list-group-item > div{
+    display: contents;
+}

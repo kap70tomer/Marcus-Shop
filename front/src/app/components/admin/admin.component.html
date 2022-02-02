@@ -1,31 +1,32 @@
 <section>
     <aside>
-        <div>
-            <input type="text" placeholder="Search entire Store" [(ngModel)]="text" id="searchProduct">
-            <span class="btn btn-danger glyphicon glyphicon-plus" (click)="initForm()">Clear </span><br><br>
+        <div class="sticky">
+            <input type="text" placeholder="Search" [(ngModel)]="text" id="searchProduct">
+            <span class="btn btn-danger glyphicon glyphicon-remove" data-toggle="tooltip" title="Clear Form" (click)="initForm()"></span><br><br>
 
 
             <form #updateProductForm="ngForm" class="main-text">
 
                 <label for="name">Name Tag</label><span class="glyphicon glyphicon-tag"></span>
-                <input type="text" placeholder="Give me a name!" value="{{currentProduct.name}}"
+                <input type="text" placeholder="Name it!" value="{{currentProduct.name}}"
                     [(ngModel)]="currentProduct.name" name="name" class="secondery-text">
                 <br>
 
                 <label for="price">Price </label><span class="glyphicon glyphicon-usd"></span><br>
                 <input type="number" min="1" placeholder="how much?" value="{{currentProduct.price}}"
                     [(ngModel)]="currentProduct.price" name="price" class="secondery-text">
-                <hr>
-                <app-upload-files></app-upload-files>
-                <hr>
-                <label for="category_id">Choose Category</label><span class="glyphicon glyphicon-tags"></span>
+                
+                <label for="category_id">Category</label><span class="glyphicon glyphicon-tags"></span>
                 <select name="category_id" [(ngModel)]="currentProduct.category_id">
                     <option value=1>Soft Drinks</option>
                     <option value=2>Alchol</option>
                     <option value=3>Food</option>
                     <option value=4>Snacks</option>
                 </select>
-
+                
+                <app-upload-files></app-upload-files>
+                <hr>
+                    
                 <button *ngIf="!this.currentProduct.id" id="saveBtn"
                     [disabled]="updateProductForm.untouched && !updateProductForm.dirty"
                     (click)="updateProduct()">Save<span class="glyphicon glyphicon-save-file"></span></button>
@@ -34,8 +35,6 @@
                     (click)="updateProduct()">Update<span class="glyphicon glyphicon-save-file"></span></button>
             </form>
         </div>
-
-        <button class="btn btn-danger" routerLink="/home">Home<span class="glyphicon glyphicon-home"></span></button>
 
     </aside>
 

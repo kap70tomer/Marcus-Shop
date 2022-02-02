@@ -23,9 +23,10 @@ img{
 
 #searchProductInput{
   float: left;
-  width: 200px;
-  height: 25px;
-  margin-top: 5px;
+  width: 150px;
+  /* height: 25px; */
+  margin: 5px;
+  text-align: center;
   opacity: 70%;
 }
 #searchProductInput:focus{
@@ -73,6 +74,10 @@ input:hover{
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 nav {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  background: darkgray;
     list-style-type: none;
     margin: 0;
     padding: 0;
