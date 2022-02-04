@@ -64,13 +64,17 @@ REST is a software architectural style that defines the set of rules to be used 
 ## How the app looks? UI- preview.
 
 ## Home page view.
-![homeshopFullscreen](https://user-images.githubusercontent.com/65711940/147880571-01218d96-c2cf-4284-9c89-a6d46ae727a5.jpeg)
+![WhatsApp Image 2022-01-31 at 18 19 38](https://user-images.githubusercontent.com/65711940/152520545-c9ce3571-cd70-4503-bbfd-d5a38a2040eb.jpeg)
 
-## Main Shop page.
-![fullscreenShop](https://user-images.githubusercontent.com/65711940/147880565-66cde5bc-a7e8-4627-948e-53a48259baf2.jpeg)
 
-## Mobile View.
-![checkout](https://user-images.githubusercontent.com/65711940/147880592-fe382e5e-ed81-410e-a129-ec7ad4e13299.jpeg)
+## Shop page.
+![WhatsApp Image 2022-01-31 at 18 21 16](https://user-images.githubusercontent.com/65711940/152520578-86a365d8-ab45-4f07-beac-62ce91cbe005.jpeg)
+
+
+## Mobile View - checkout page.
+![WhatsApp Image 2022-02-04 at 13 41 01](https://user-images.githubusercontent.com/65711940/152523350-585d4b2d-3893-44cc-a4e8-063e79d748d8.jpeg)
+
 
 ## Admins Dashboard.
-![dashboardShop](https://user-images.githubusercontent.com/65711940/147880732-5032ba40-78f1-46f1-b893-dc5e96f5f72f.jpeg)
+![WhatsApp Image 2022-02-04 at 13 44 25](https://user-images.githubusercontent.com/65711940/152523708-17eabe56-70b6-48d1-8a32-41e822171bb4.jpeg)
+
